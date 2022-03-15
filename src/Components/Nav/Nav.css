@@ -1,0 +1,8 @@
+header{
+    position: sticky;
+    top: 0;
+}
+
+.nav-right{
+    padding-right: 2rem;
+}
