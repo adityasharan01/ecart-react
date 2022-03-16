@@ -8,14 +8,14 @@ function Home() {
     <div className='px-1'>
       <Nav/>
       <div className="banner my-1">
-        <img src="/images/watches.avif" alt="" srcset="" />
+        <img src="/images/watches.avif" alt="banner image" />
       </div>
       <div className="category my-2">
         <CategoryCard category="All" imgSrc="/images/all-watch.webp"/>
-        <CategoryCard category="Men" imgSrc="/images/men-watch.webp"/>
-        <CategoryCard category="Women" imgSrc="/images/women-watch.webp"/>
-        <CategoryCard category="Boy" imgSrc="/images/boys-watch.webp"/>
-        <CategoryCard category="Girl" imgSrc="/images/girl-watch.webp"/>
+        <CategoryCard category="Mens" imgSrc="/images/men-watch.webp"/>
+        <CategoryCard category="Womens" imgSrc="/images/women-watch.webp"/>
+        <CategoryCard category="Boys" imgSrc="/images/boys-watch.webp"/>
+        <CategoryCard category="Girls" imgSrc="/images/girl-watch.webp"/>
       </div>
      
     </div>
