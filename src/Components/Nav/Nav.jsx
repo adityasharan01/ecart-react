@@ -5,19 +5,19 @@ import "./Nav.css";
 function Nav() {
   return (
       <header>
-        <div class="header-brand">
-          <a href="#" class="btn-link">
+        <div className="header-brand">
+          <Link to="/" className="btn-link">
             Always Shopping
-          </a>
-        </div>
-        <div class="nav-right center-div">
-          <Link to="/wishlist" class="badge-icon-wrapper center-div p-1 btn-link">
-            <i class="far fa-heart"></i>
-            <span class="badge-icon center-div">1</span>
           </Link>
-          <Link to="/cart" class="badge-icon-wrapper center-div p-1 btn-link">
-            <i class="fas fa-cart-plus"></i>
-            <span class="badge-icon">6</span>
+        </div>
+        <div className="nav-right center-div">
+          <Link to="/wishlist" className="badge-icon-wrapper center-div p-1 btn-link">
+            <i className="far fa-heart"></i>
+            <span className="badge-icon center-div">1</span>
+          </Link>
+          <Link to="/cart" className="badge-icon-wrapper center-div p-1 btn-link">
+            <i className="fas fa-cart-plus"></i>
+            <span className="badge-icon">6</span>
           </Link>
         </div>
       </header>

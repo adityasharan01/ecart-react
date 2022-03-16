@@ -5,11 +5,11 @@ import "./CategoryCard.css";
 function CategoryCard({ category, imgSrc }) {
   return (
     <div>
-      <Link to="/products" class="btn-link">
-        <div class="card category-card m-1">
-          <div class="card-section center-div">
-            <img class="card-img img-responsive p-1" src={imgSrc} alt="card img" />
-            <span class="card-badge p-1">{category}</span>
+      <Link to="/products" className="btn-link">
+        <div className="card category-card m-1">
+          <div className="card-section center-div">
+            <img className="card-img img-responsive p-1" src={imgSrc} alt="card img" />
+            <span className="card-badge p-1">{category}</span>
           </div>
         </div>
       </Link>
