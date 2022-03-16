@@ -1,6 +1,6 @@
 import React from 'react'
 import Nav from '../../Components/Nav/Nav';
-import CategoryCard from '../../Components/CategoryCard/CategoryCard';
+import { CategoryCard } from '../../Components';
 import "./Home.css";
 
 function Home() {
