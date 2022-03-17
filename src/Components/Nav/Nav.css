@@ -1,0 +1,16 @@
+header{
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.nav-right{
+    padding-right: 2rem;
+}
+
+@media screen and (max-width: 600px){
+    .header-brand > a{
+        font-size: 1.5rem;
+    }
+}
