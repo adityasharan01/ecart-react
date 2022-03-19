@@ -1,8 +1,8 @@
-export const filterProducts = (products = [], categories = {}, includeOutOfStock , fastDelivery = false) => {
+export const filterProducts = (products = [], categories = {}) => {
   const { menWatches, womenWatches, boyWatches, girlWatches } = categories;
   const filteredProducts = [];
 
-  if (!menWatches && !womenWatches && !boyWatches && !girlWatches && includeOutOfStock && !fastDelivery) {
+  if (!menWatches && !womenWatches && !boyWatches && !girlWatches) {
     return products;
   }
 
@@ -34,14 +34,5 @@ export const filterProducts = (products = [], categories = {}, includeOutOfStock
     filteredProducts.push(...girlProducts);
   }
 
-  if(!includeOutOfStock){
-    const outOfStockProducts = products.filter(({ inStock }) => includeOutOfStock ? true : inStock);
-    filteredProducts.push(...outOfStockProducts);
-  }
-
-  if(fastDelivery){
-    const fastDeliveryProducts = products.filter(({ fastDelivery }) => fastDelivery);
-    filteredProducts.push(...fastDeliveryProducts);
-  }
   return filteredProducts;
 };

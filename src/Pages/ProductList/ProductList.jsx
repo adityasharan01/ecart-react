@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Nav, Filter, ProductCard, Spinner } from "../../Components";
 import "./ProductList.css";
 import { useProductFilter } from "../../Context/product-filter";
@@ -7,6 +7,7 @@ import {
   sortProducts,
   rateProducts,
   priceFilter,
+  filterCategory,
 } from "../../utils";
 import { useDataFetch } from "../../Hooks";
 
@@ -14,21 +15,21 @@ function ProductList() {
   const { state } = useProductFilter();
   const { categories, sortBy, rating, price, includeOutOfStock, fastDelivery } =
     state;
-  const [{ data, isLoading, isError }, setUrl] = useDataFetch(
+  const [{ data, isLoading, isError }] = useDataFetch(
     "/api/products",
     []
   );
   const { products } = data;
 
   const pricedFiltered = priceFilter(products, price);
-  const filteredProducts = filterProducts(
-    pricedFiltered,
-    categories,
+  const filteredProducts = filterProducts(pricedFiltered, categories);
+  const ratedProducts = rateProducts(filteredProducts, rating);
+  const sortedProducts = sortProducts(ratedProducts, sortBy);
+  const filteredAvailability = filterCategory(
+    sortedProducts,
     includeOutOfStock,
     fastDelivery
   );
-  const ratedProducts = rateProducts(filteredProducts, rating);
-  const sortedProducts = sortProducts(ratedProducts, sortBy);
 
   return (
     <div className="px-1">
@@ -41,7 +42,7 @@ function ProductList() {
               <div className="heading p-2 flex center-div">
                 <h3>Showing All Products</h3>
                 <small className="px-2">
-                  (showing {sortedProducts.length} products)
+                  (showing {filteredAvailability.length} products)
                 </small>
               </div>
 
@@ -53,7 +54,7 @@ function ProductList() {
                 {isLoading ? (
                   <Spinner />
                 ) : (
-                  sortedProducts?.map((product) => (
+                  filteredAvailability?.map((product) => (
                     <ProductCard key={product.id} {...product} />
                   ))
                 )}
