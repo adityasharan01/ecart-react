@@ -1,0 +1,9 @@
+/* product lists */
+.wishlist-products {
+  height: 70vh;
+  overflow-y: scroll;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+}
