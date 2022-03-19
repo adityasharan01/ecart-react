@@ -1,0 +1,23 @@
+/* sidebar */
+.sidebar {
+  height: 85vh;
+  overflow-y: scroll;
+  border-right: 1px solid var(--secondary-color);
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-header {
+  justify-content: space-between;
+}
+
+.filter-header .btn-link {
+  text-decoration: underline;
+}

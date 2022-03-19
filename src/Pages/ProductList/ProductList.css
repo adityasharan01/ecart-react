@@ -1,0 +1,15 @@
+.grid-1-5-col {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+}
+
+/* product list */
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+main {
+  height: 90vh;
+  overflow-y: scroll;
+}
