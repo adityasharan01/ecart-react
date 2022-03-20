@@ -1,0 +1,33 @@
+/* card */
+.product-card {
+  width: 15rem;
+}
+
+.card-header {
+  flex-direction: column;
+}
+
+.card-dismiss{
+ color: #c2c2c2;
+}
+
+.card-desc{
+  width: 15rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.card-price-section{
+  display: flex;
+  gap: 1.5rem;
+}
+
+.btn-secondary,
+.btn-primary {
+  width: 100%;
+}
+
+.card-header:hover {
+  background: none;
+}

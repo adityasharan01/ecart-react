@@ -1,0 +1,22 @@
+/* card */
+.cart-card {
+  width: 30rem;
+}
+
+.btn {
+  width: 100%;
+  margin: 0.5em 0;
+}
+
+.discount-price {
+  text-decoration: line-through;
+  color: var(--secondary-text);
+}
+
+.discount {
+  color: var(--secondary-text);
+}
+
+.quantity {
+  border: 1px solid var(--secondary-text);
+}
