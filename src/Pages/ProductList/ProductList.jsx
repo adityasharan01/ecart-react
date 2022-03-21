@@ -15,10 +15,7 @@ function ProductList() {
   const { state } = useProductFilter();
   const { categories, sortBy, rating, price, includeOutOfStock, fastDelivery } =
     state;
-  const [{ data, isLoading, isError }] = useDataFetch(
-    "/api/products",
-    []
-  );
+  const [{ data, isLoading, isError }] = useDataFetch("/api/products", []);
   const { products } = data;
 
   const pricedFiltered = priceFilter(products, price);
@@ -55,7 +52,7 @@ function ProductList() {
                   <Spinner />
                 ) : (
                   filteredAvailability?.map((product) => (
-                    <ProductCard key={product.id} {...product} />
+                    <ProductCard key={product._id} product={product} />
                   ))
                 )}
               </div>

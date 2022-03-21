@@ -7,8 +7,12 @@
   flex-direction: column;
 }
 
-.card-dismiss{
- color: #c2c2c2;
+.inwishlist-true{
+  color: var(--primary-color);
+}
+
+.inwishlist-false{
+  color: var(--gray-color);
 }
 
 .card-desc{
