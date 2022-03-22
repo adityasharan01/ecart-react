@@ -1,15 +1,8 @@
-import { filterProducts } from "./filterProducts";
-import { sortProducts } from "./sortProducts";
-import { rateProducts } from "./rateProducts";
-import { priceFilter } from "./priceFilter";
-import { filterCategory } from "./filterCategory";
-import { isItemInWishlist } from "./isItemInWishlist";
-
-export {
-  filterProducts,
-  sortProducts,
-  rateProducts,
-  priceFilter,
-  filterCategory,
-  isItemInWishlist,
-};
+export { filterProducts } from "./filterProducts";
+export { sortProducts } from "./sortProducts";
+export { rateProducts } from "./rateProducts";
+export { priceFilter } from "./priceFilter";
+export { filterCategory } from "./filterCategory";
+export { isItemInList } from "./isItemInList";
+export { totalItemsInList } from "./cartUtils/totalItems";
+export { totalPrice } from "./cartUtils/totalPrice";

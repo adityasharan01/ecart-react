@@ -1,7 +1,10 @@
 import React from "react";
 import { useWishlist } from "../../Context/wishlist";
 import "./ProductCard.css";
-import { isItemInWishlist } from "../../utils";
+import { isItemInList } from "../../utils";
+import { useCart } from "../../Context/cart";
+import { Link } from "react-router-dom";
+import Button from "../Button/Button";
 
 function ProductCard({ product }) {
   const {
@@ -16,7 +19,9 @@ function ProductCard({ product }) {
     inStock,
   } = product;
   const { state, dispatch } = useWishlist();
-  const itemInWishlist = isItemInWishlist(_id, state.wishlist);
+  const { cartState, cartDispatch } = useCart();
+  const itemInWishlist = isItemInList(_id, state.wishlist);
+  const itemInCart = isItemInList(_id, cartState.cart);
 
   return (
     <div className="card product-card m-1">
@@ -49,7 +54,21 @@ function ProductCard({ product }) {
             <h3>₹{price}</h3> <del>₹{oldPrice}</del>
             <span>{rate} ★</span>
           </div>
-          <button className="btn btn-secondary">Add to cart</button>
+          {itemInCart ? (
+            <Link to="/cart">
+              <button className="btn btn-outline-primary">Go to cart</button>
+            </Link>
+          ) : (
+            <Button
+              class_name="btn btn-secondary"
+              disabled={!inStock}
+              clickHandler={() =>
+                cartDispatch({ type: "ADD_TO_CART", payload: product })
+              }
+            >
+              Add to cart
+            </Button>
+          )}
         </div>
       </div>
     </div>

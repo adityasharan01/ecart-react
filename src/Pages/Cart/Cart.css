@@ -6,23 +6,3 @@
   height: 70vh;
   overflow-y: scroll;
 }
-
-/* price card */
-.flex-between {
-  display: flex;
-  justify-content: space-between;
-}
-
-.card-footer {
-  justify-content: center;
-  align-items: center;
-}
-
-.price-card {
-  width: 20rem;
-}
-
-.card-header:hover {
-  background: none;
-  cursor: auto;
-}
