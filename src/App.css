@@ -1,3 +1,7 @@
+:root{
+  --gray-color: #c2c2c2;
+}
+
 /* scroll */
 ::-webkit-scrollbar {
   width: 0.3em;

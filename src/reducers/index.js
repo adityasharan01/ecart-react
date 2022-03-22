@@ -1,3 +1,4 @@
 import { productFilterReducer } from "./productFilterReducer";
+import { wishlistReducer } from "./wishlistReducer";
 
-export { productFilterReducer };
+export { productFilterReducer, wishlistReducer };
