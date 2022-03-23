@@ -28,7 +28,8 @@
 }
 
 .btn-secondary,
-.btn-primary {
+.btn-primary,
+a{
   width: 100%;
 }
 

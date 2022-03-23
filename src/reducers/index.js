@@ -1,4 +1,3 @@
-import { productFilterReducer } from "./productFilterReducer";
-import { wishlistReducer } from "./wishlistReducer";
-
-export { productFilterReducer, wishlistReducer };
+export { productFilterReducer } from "./productFilterReducer";
+export { wishlistReducer } from "./wishlistReducer";
+export { cartReducer } from "./cartReducer";
