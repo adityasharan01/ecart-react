@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Checkout } from "../../Components";
 import CartCard from "../../Components/CartCard/CartCard";
 import Nav from "../../Components/Nav/Nav";
@@ -18,17 +19,24 @@ function Cart() {
             My cart <span>({cart.length})</span>
           </h3>
         </div>
-
-        <div className="cart grid-2-col">
-          <div className="products px-3">
-            {cart?.map((item) => (
-              <CartCard key={item._id} product={item} />
-            ))}
+        {cart.length > 0 ? (
+          <div className="cart grid-2-col">
+            <div className="products px-3">
+              {cart?.map((item) => (
+                <CartCard key={item._id} product={item} />
+              ))}
+            </div>
+            <div className="price px-3">
+              <Checkout />
+            </div>
           </div>
-          <div className="price px-3">
-            <Checkout/>
+        ) : (
+          <div className="message center-div">
+            <p>
+              Your cart is empty. <Link to="/products" className="btn-link">Continue shopping</Link> 🤗
+            </p>
           </div>
-        </div>
+        )}
       </main>
     </div>
   );

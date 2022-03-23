@@ -6,3 +6,8 @@
   height: 70vh;
   overflow-y: scroll;
 }
+
+.message > p > .btn-link{
+  text-decoration: underline;
+  color: var(--primary-color);
+}
