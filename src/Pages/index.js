@@ -2,5 +2,7 @@ import Cart from "./Cart/Cart";
 import Home from "./Home/Home";
 import ProductList from "./ProductList/ProductList";
 import Wishlist from "./Wishlist/Wishlist";
+import Login from "./Auth/Login";
+import Signup from "./Auth/Signup";
 
-export { Cart, Home, ProductList, Wishlist };
+export { Cart, Home, ProductList, Wishlist, Login, Signup };

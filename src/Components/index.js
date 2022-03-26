@@ -7,5 +7,6 @@ import CheckBox from "./CheckBox/CheckBox";
 import Spinner from "./Spinner/Spinner";
 import Button from "./Button/Button";
 import Checkout from "./Checkout/Checkout";
+import Input from "./Input/Input";
 
-export { CategoryCard, CartCard, Filter, Nav, ProductCard, CheckBox, Spinner, Button, Checkout };
+export { CategoryCard, CartCard, Filter, Nav, ProductCard, CheckBox, Spinner, Button, Checkout, Input };

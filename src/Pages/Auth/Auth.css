@@ -1,0 +1,48 @@
+/* login card */
+main {
+  height: 80vh;
+}
+
+.card-header:hover {
+  background: none;
+}
+
+/* form */
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-check {
+  display: flex;
+  justify-content: space-between;
+}
+
+form .btn {
+  width: 100%;
+  margin-left: 0;
+}
+
+form .input-textbox {
+  width: 100%;
+}
+
+.link {
+  color: var(--primary-color);
+}
+
+/* card */
+.auth-card {
+  width: 30rem;
+}
+
+/* form */
+.form-group {
+  position: relative;
+}
+
+.show-password {
+  position: absolute;
+  top: 50%;
+  right: 3%;
+}
