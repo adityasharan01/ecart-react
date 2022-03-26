@@ -60,6 +60,26 @@ function ProductCard({ product }) {
     }
   };
 
+  const handleAddToCart = async (product) => {
+    if (token) {
+      try {
+        const res = await axios.post(
+          `api/user/cart`,
+          { product },
+          {
+            headers: { authorization: token },
+          }
+        );
+        console.log(res);
+        cartDispatch({ type: "ADD_TO_CART", payload: product });
+      } catch (e) {
+        console.error(e);
+      }
+    } else {
+      navigate("/login");
+    }
+  };
+
   return (
     <div className="card product-card m-1">
       <div className="card-section">
@@ -95,9 +115,7 @@ function ProductCard({ product }) {
             <Button
               class_name="btn btn-secondary"
               disabled={!inStock}
-              clickHandler={() =>
-                cartDispatch({ type: "ADD_TO_CART", payload: product })
-              }
+              clickHandler={() => handleAddToCart(product)}
             >
               Add to cart
             </Button>
