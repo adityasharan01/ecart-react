@@ -18,7 +18,7 @@ function Nav() {
       </div>
       <div className="nav-right center-div">
         <Link
-          to="/login"
+          to={token ? "/profile": "/login"}
           className="badge-icon-wrapper center-div p-1 btn-link"
         >
           <i className="far fa-user"></i>
