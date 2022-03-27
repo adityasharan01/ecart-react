@@ -1,35 +1,35 @@
 /* card */
 .product-card {
-  width: 15rem;
+  width: 14rem;
 }
 
 .card-header {
   flex-direction: column;
 }
 
-.inwishlist-true{
+.inwishlist-true {
   color: var(--primary-color);
 }
 
-.inwishlist-false{
+.inwishlist-false {
   color: var(--gray-color);
 }
 
-.card-desc{
-  width: 15rem;
+.card-desc {
+  width: 14rem;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
 
-.card-price-section{
+.card-price-section {
   display: flex;
   gap: 1.5rem;
 }
 
 .btn-secondary,
 .btn-primary,
-a{
+a {
   width: 100%;
 }
 
