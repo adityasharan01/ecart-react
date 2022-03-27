@@ -37,7 +37,6 @@ function CartCard({ product }) {
         const res = await axios.delete(`api/user/wishlist/${_id}`, {
           headers: { authorization: token },
         });
-        console.log(res);
         cartDispatch({ type: "REMOVE_FROM_CART", payload: _id });
       } catch (e) {
         console.error(e);
