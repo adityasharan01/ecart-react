@@ -3,8 +3,9 @@ import { useWishlist } from "../../Context/wishlist";
 import "./ProductCard.css";
 import { isItemInList } from "../../utils";
 import { useCart } from "../../Context/cart";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../Button/Button";
+import axios from "axios";
 
 function ProductCard({ product }) {
   const {
@@ -22,6 +23,62 @@ function ProductCard({ product }) {
   const { cartState, cartDispatch } = useCart();
   const itemInWishlist = isItemInList(_id, state.wishlist);
   const itemInCart = isItemInList(_id, cartState.cart);
+  const token = localStorage.getItem("token");
+  const navigate = useNavigate();
+
+  const handleAddToWishlist = async (product) => {
+    if (token) {
+      try {
+        const res = await axios.post(
+          "api/user/wishlist",
+          { product },
+          {
+            headers: { authorization: token },
+          }
+        );
+        dispatch({ type: "ADD_TO_WISHLIST", payload: product });
+      } catch (e) {
+        console.error(e);
+      }
+    } else {
+      navigate("/login");
+    }
+  };
+
+  const handleRemoveFromWishlist = async (_id) => {
+    if (token) {
+      try {
+        const res = await axios.delete(`api/user/wishlist/${_id}`, {
+          headers: { authorization: token },
+        });
+        dispatch({ type: "REMOVE_FROM_WISHLIST", payload: _id });
+      } catch (e) {
+        console.error(e);
+      }
+    } else {
+      navigate("/login");
+    }
+  };
+
+  const handleAddToCart = async (product) => {
+    if (token) {
+      try {
+        const res = await axios.post(
+          `api/user/cart`,
+          { product },
+          {
+            headers: { authorization: token },
+          }
+        );
+        console.log(res);
+        cartDispatch({ type: "ADD_TO_CART", payload: product });
+      } catch (e) {
+        console.error(e);
+      }
+    } else {
+      navigate("/login");
+    }
+  };
 
   return (
     <div className="card product-card m-1">
@@ -31,18 +88,14 @@ function ProductCard({ product }) {
         {itemInWishlist ? (
           <span
             className={`card-dismiss inwishlist-${itemInWishlist} center-div p-1`}
-            onClick={() =>
-              dispatch({ type: "REMOVE_FROM_WISHLIST", payload: _id })
-            }
+            onClick={() => handleRemoveFromWishlist(_id)}
           >
             <i className="fas fa-heart"></i>
           </span>
         ) : (
           <span
             className={`card-dismiss inwishlist-${itemInWishlist} center-div p-1`}
-            onClick={() =>
-              dispatch({ type: "ADD_TO_WISHLIST", payload: product })
-            }
+            onClick={() => handleAddToWishlist(product)}
           >
             <i className="fas fa-heart"></i>
           </span>
@@ -62,9 +115,7 @@ function ProductCard({ product }) {
             <Button
               class_name="btn btn-secondary"
               disabled={!inStock}
-              clickHandler={() =>
-                cartDispatch({ type: "ADD_TO_CART", payload: product })
-              }
+              clickHandler={() => handleAddToCart(product)}
             >
               Add to cart
             </Button>
