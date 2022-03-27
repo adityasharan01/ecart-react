@@ -4,6 +4,7 @@ import { useWishlist } from "../../Context/wishlist";
 import { isItemInList } from "../../utils";
 import Button from "../Button/Button";
 import "./CartCard.css";
+import axios from "axios";
 
 function CartCard({ product }) {
   const { _id, image, productName, price, oldPrice, discount, quantity } =
@@ -11,6 +12,7 @@ function CartCard({ product }) {
   const { cartState, cartDispatch } = useCart();
   const { state, dispatch } = useWishlist();
   const isItemInWishlist = isItemInList(product._id, state.wishlist);
+  const token = localStorage.getItem("token");
 
   const moveToWishlistHandler = (product) => {
     cartDispatch({ type: "REMOVE_FROM_CART", payload: product._id });
@@ -26,6 +28,21 @@ function CartCard({ product }) {
   const decreaseQuantityHandler = (_id) => {
     if (quantity > 1) {
       cartDispatch({ type: "DECREASE_QUANTITY", payload: _id });
+    }
+  };
+
+  const handleRemoveFromCart = async (_id) => {
+    if (token) {
+      try {
+        const res = await axios.delete(`api/user/wishlist/${_id}`, {
+          headers: { authorization: token },
+        });
+        cartDispatch({ type: "REMOVE_FROM_CART", payload: _id });
+      } catch (e) {
+        console.error(e);
+      }
+    } else {
+      navigate("/login");
     }
   };
 
@@ -57,9 +74,7 @@ function CartCard({ product }) {
           </p>
           <Button
             class_name="btn btn-primary my-1"
-            clickHandler={() =>
-              cartDispatch({ type: "REMOVE_FROM_CART", payload: _id })
-            }
+            clickHandler={() => handleRemoveFromCart(_id)}
           >
             Remove from cart
           </Button>

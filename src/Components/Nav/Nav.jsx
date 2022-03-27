@@ -7,6 +7,8 @@ import "./Nav.css";
 function Nav() {
   const { state } = useWishlist();
   const { cartState } = useCart();
+  const token = localStorage.getItem("token");
+
   return (
     <header>
       <div className="header-brand">
@@ -16,19 +18,22 @@ function Nav() {
       </div>
       <div className="nav-right center-div">
         <Link
-          to="/login"
+          to={token ? "/profile": "/login"}
           className="badge-icon-wrapper center-div p-1 btn-link"
         >
           <i className="far fa-user"></i>
         </Link>
         <Link
-          to="/wishlist"
+          to={token ? "/wishlist" : "/login"}
           className="badge-icon-wrapper center-div p-1 btn-link"
         >
           <i className="far fa-heart"></i>
           <span className="badge-icon center-div">{state.wishlist.length}</span>
         </Link>
-        <Link to="/cart" className="badge-icon-wrapper center-div p-1 btn-link">
+        <Link
+          to={token ? "/cart" : "/login"}
+          className="badge-icon-wrapper center-div p-1 btn-link"
+        >
           <i className="fas fa-cart-plus"></i>
           <span className="badge-icon">{cartState.cart.length}</span>
         </Link>
