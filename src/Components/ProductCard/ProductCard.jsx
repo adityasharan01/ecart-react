@@ -70,7 +70,6 @@ function ProductCard({ product }) {
             headers: { authorization: token },
           }
         );
-        console.log(res);
         cartDispatch({ type: "ADD_TO_CART", payload: product });
       } catch (e) {
         console.error(e);
