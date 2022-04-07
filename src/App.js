@@ -9,6 +9,7 @@ import {
   Login,
   Signup,
   Profile,
+  NotFound,
 } from "./Pages";
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/mockman" element={<Mockman />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );
