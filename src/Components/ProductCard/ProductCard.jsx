@@ -6,6 +6,7 @@ import { useCart } from "../../Context/cart";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../Button/Button";
 import axios from "axios";
+import { useAuth } from "../../Context/auth";
 
 function ProductCard({ product }) {
   const {
@@ -25,9 +26,10 @@ function ProductCard({ product }) {
   const itemInCart = isItemInList(_id, cartState.cart);
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   const handleAddToWishlist = async (product) => {
-    if (token) {
+    if (user) {
       try {
         const res = await axios.post(
           "api/user/wishlist",
@@ -46,7 +48,7 @@ function ProductCard({ product }) {
   };
 
   const handleRemoveFromWishlist = async (_id) => {
-    if (token) {
+    if (user) {
       try {
         const res = await axios.delete(`api/user/wishlist/${_id}`, {
           headers: { authorization: token },
@@ -61,7 +63,7 @@ function ProductCard({ product }) {
   };
 
   const handleAddToCart = async (product) => {
-    if (token) {
+    if (user) {
       try {
         const res = await axios.post(
           `api/user/cart`,
