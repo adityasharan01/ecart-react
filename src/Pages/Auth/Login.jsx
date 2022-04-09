@@ -21,11 +21,7 @@ function Login() {
       const { foundUser, encodedToken } = data;
       setUser(foundUser);
       localStorage.setItem("token", encodedToken);
-      if (location.state) {
-        navigate(location.state?.from?.pathname);
-      } else {
-        navigate("/products");
-      }
+      navigate(location.state?.from?.pathname);
     } catch (error) {
       console.error(error);
       setError("Something went wrong😞");

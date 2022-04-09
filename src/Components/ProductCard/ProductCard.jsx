@@ -3,7 +3,7 @@ import { useWishlist } from "../../Context/wishlist";
 import "./ProductCard.css";
 import { isItemInList } from "../../utils";
 import { useCart } from "../../Context/cart";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Button from "../Button/Button";
 import axios from "axios";
 import { useAuth } from "../../Context/auth";
@@ -26,7 +26,9 @@ function ProductCard({ product }) {
   const itemInCart = isItemInList(_id, cartState.cart);
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
+  const location = useLocation();
   const { user } = useAuth();
+
 
   const handleAddToWishlist = async (product) => {
     if (user) {
@@ -43,7 +45,7 @@ function ProductCard({ product }) {
         console.error(e);
       }
     } else {
-      navigate("/login");
+      navigate("/login", { state: { from: location }});
     }
   };
 
@@ -58,7 +60,7 @@ function ProductCard({ product }) {
         console.error(e);
       }
     } else {
-      navigate("/login");
+      navigate("/login", { state: { from: location }});
     }
   };
 
@@ -77,7 +79,7 @@ function ProductCard({ product }) {
         console.error(e);
       }
     } else {
-      navigate("/login");
+      navigate("/login", { state: { from: location }});
     }
   };
 
