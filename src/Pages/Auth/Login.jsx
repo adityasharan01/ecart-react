@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Input, Nav } from "../../Components";
 import { useAuth } from "../../Context/auth";
 import "./Auth.css";
@@ -12,6 +12,7 @@ function Login() {
   const [error, setError] = useState("");
   const { setUser } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const loginHandler = async (e) => {
     e.preventDefault();
@@ -20,7 +21,7 @@ function Login() {
       const { foundUser, encodedToken } = data;
       setUser(foundUser);
       localStorage.setItem("token", encodedToken);
-      navigate("/");
+      navigate(location.state?.from?.pathname);
     } catch (error) {
       console.error(error);
       setError("Something went wrong😞");

@@ -3,9 +3,10 @@ import { useWishlist } from "../../Context/wishlist";
 import "./ProductCard.css";
 import { isItemInList } from "../../utils";
 import { useCart } from "../../Context/cart";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Button from "../Button/Button";
 import axios from "axios";
+import { useAuth } from "../../Context/auth";
 
 function ProductCard({ product }) {
   const {
@@ -25,9 +26,12 @@ function ProductCard({ product }) {
   const itemInCart = isItemInList(_id, cartState.cart);
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
+  const location = useLocation();
+  const { user } = useAuth();
+
 
   const handleAddToWishlist = async (product) => {
-    if (token) {
+    if (user) {
       try {
         const res = await axios.post(
           "api/user/wishlist",
@@ -41,12 +45,12 @@ function ProductCard({ product }) {
         console.error(e);
       }
     } else {
-      navigate("/login");
+      navigate("/login", { state: { from: location }});
     }
   };
 
   const handleRemoveFromWishlist = async (_id) => {
-    if (token) {
+    if (user) {
       try {
         const res = await axios.delete(`api/user/wishlist/${_id}`, {
           headers: { authorization: token },
@@ -56,12 +60,12 @@ function ProductCard({ product }) {
         console.error(e);
       }
     } else {
-      navigate("/login");
+      navigate("/login", { state: { from: location }});
     }
   };
 
   const handleAddToCart = async (product) => {
-    if (token) {
+    if (user) {
       try {
         const res = await axios.post(
           `api/user/cart`,
@@ -75,7 +79,7 @@ function ProductCard({ product }) {
         console.error(e);
       }
     } else {
-      navigate("/login");
+      navigate("/login", { state: { from: location }});
     }
   };
 
