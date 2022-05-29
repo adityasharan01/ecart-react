@@ -1,3 +1,2 @@
-import { useDataFetch } from './useDataFetch';
-
-export { useDataFetch };
+export { useDataFetch } from "./useDataFetch";
+export { useToggle } from "./useToggle";

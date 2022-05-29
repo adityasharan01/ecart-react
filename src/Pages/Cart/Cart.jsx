@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Checkout } from "../../Components";
+import { CheckoutCard } from "../../Components";
 import CartCard from "../../Components/CartCard/CartCard";
 import Nav from "../../Components/Nav/Nav";
 import { useCart } from "../../Context/cart";
@@ -27,7 +27,7 @@ function Cart() {
               ))}
             </div>
             <div className="price px-3">
-              <Checkout />
+              <CheckoutCard />
             </div>
           </div>
         ) : (

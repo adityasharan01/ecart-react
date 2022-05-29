@@ -1,9 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useCart } from "../../Context/cart";
 import { totalItemsInList, totalPrice } from "../../utils";
-import "./Checkout.css";
+import "./CheckoutCard.css";
 
-function Checkout() {
+function CheckoutCard() {
   const { cartState } = useCart();
   const { cart } = cartState;
   const totalItems = totalItemsInList(cart);
@@ -42,10 +43,10 @@ function Checkout() {
       </div>
       <hr className="separator" />
       <div className="card-footer p-1">
-        <a className="p-1 checkout">PLACE ORDER</a>
+        <Link to="/checkout" className="p-1 checkout btn-link">PLACE ORDER</Link>
       </div>
     </div>
   );
 }
 
-export default Checkout;
+export default CheckoutCard;

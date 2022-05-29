@@ -1,0 +1,23 @@
+.checkout-item,
+.item-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1em;
+}
+
+.checkout-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2em;
+  flex-wrap: wrap;
+}
+
+.checkout-addresses {
+  align-self: flex-start;
+}
+
+.checkout-place-order {
+  max-width: 40rem;
+}

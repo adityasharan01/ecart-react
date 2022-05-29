@@ -11,6 +11,7 @@ import {
   Signup,
   Profile,
   NotFound,
+  Checkout,
 } from "./Pages";
 
 function App() {
@@ -42,6 +43,14 @@ function App() {
           element={
             <RequiresAuth>
               <Profile />
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path="/checkout"
+          element={
+            <RequiresAuth>
+              <Checkout />
             </RequiresAuth>
           }
         />

@@ -21,7 +21,7 @@ function Login() {
       const { foundUser, encodedToken } = data;
       setUser(foundUser);
       localStorage.setItem("token", encodedToken);
-      navigate(location.state?.from?.pathname);
+      navigate(location.state?.from?.pathname || "/");
     } catch (error) {
       console.error(error);
       setError("Something went wrong😞");
@@ -29,8 +29,8 @@ function Login() {
   };
 
   const setDummyUserHandler = () => {
-    setEmail("adarshbalika@gmail.com");
-    setPassword("adarshBalika123");
+    setEmail("johndoe@gmail.com");
+    setPassword("johnDoe123");
   };
 
   return (
@@ -78,13 +78,14 @@ function Login() {
                 <button type="submit" className="btn btn-primary">
                   Submit
                 </button>
+                <button
+                  type="submit"
+                  className="btn btn-secondary"
+                  onClick={setDummyUserHandler}
+                >
+                  Login with dummy user
+                </button>
               </form>
-              <button
-                className="btn btn-secondary"
-                onClick={setDummyUserHandler}
-              >
-                Login with dummy user
-              </button>
               <Link to="/signup" className="btn-link center-div">
                 Create new account <i className="fas fa-arrow-right px-1"></i>
               </Link>
