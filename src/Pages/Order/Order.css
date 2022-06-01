@@ -1,0 +1,41 @@
+.card-order {
+  width: 60rem;
+  height: 55vh;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2em;
+}
+
+.text-green {
+  color: var(--text-green);
+}
+
+.order-items {
+  height: 50vh;
+  overflow-y: scroll;
+}
+
+.back-btn {
+  max-width: 15rem;
+  font-weight: bold;
+}
+
+.purchased-item {
+  display: flex;
+  flex-wrap: wrap;
+  width: 30rem;
+  gap: 1em;
+}
+
+.item-image {
+  width: 10rem;
+  height: 10rem;
+}
+
+@media screen and (max-width: 58.125em) {
+  .card-order,
+  .order-items {
+    height: auto;
+    overflow: hidden;
+  }
+}

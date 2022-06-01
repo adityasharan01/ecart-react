@@ -1,19 +1,84 @@
 import React from "react";
+import { v4 as uuid } from "uuid";
 import { AddressCard, AddressForm, Nav } from "../../Components";
 import { useAddress } from "../../Context/address";
 import { useCart } from "../../Context/cart";
 import { useToggle } from "../../Hooks/useToggle";
 import { totalPrice } from "../../utils";
+import { useAuth } from "../../Context/auth";
 import "./Checkout.css";
+import { useOrder } from "../../Context/order-context";
+import { useNavigate } from "react-router-dom";
 
 function Checkout() {
-  const { cartState } = useCart();
+  const { cartState, cartDispatch } = useCart();
   const [isAddressFormVisible, toggleAddressForm] = useToggle();
   const { addresses } = useAddress();
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const { orderDispatch } = useOrder();
   const { cart } = cartState;
   const totalPriceOfItems = totalPrice(cart);
   const discountedPrice = totalPriceOfItems / 10;
   const totalAmount = totalPriceOfItems - discountedPrice + 100;
+
+  const loadScript = (url) => {
+    return new Promise((resolve) => {
+      const script = document.createElement("script");
+      script.src = url;
+      script.onload = () => resolve(true);
+      script.onerror = () => resolve(false);
+      document.body.appendChild(script);
+    });
+  };
+
+  const displayRazorPay = async (amount) => {
+    const res = await loadScript(
+      "https://checkout.razorpay.com/v1/checkout.js"
+    );
+
+    if (!res) {
+      alert("Failed to load RazorPay SDK 😢");
+      return;
+    }
+
+    const options = {
+      key: "rzp_test_CZbiAOJ9f7Juge",
+      currency: "INR",
+      amount: amount * 100,
+      name: "Always shopping",
+      description: "Thanks for purchasing",
+      image: "/logo192.png",
+
+      handler: function ({ razorpay_payment_id }) {
+        const newOrder = {
+          paymentId: razorpay_payment_id,
+          orderId: uuid(),
+          totalAmount: amount,
+          items: cart,
+          address: addresses.find((address) => address.checked),
+        };
+        orderDispatch({ type: "SAVE_ORDER", payload: newOrder });
+        if (razorpay_payment_id) {
+          cartDispatch({ type: "CLEAR_CART" });
+          navigate("/orders");
+        }
+      },
+
+      prefill: {
+        name: `${user.firstName} ${user.lastName}`,
+        email: `${user.email}`,
+        contact: `1234567890`,
+      },
+
+      theme: {
+        color: "#49a0eb",
+      },
+    };
+
+    const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
+  };
 
   return (
     <div className="px-2">
@@ -118,7 +183,14 @@ function Checkout() {
               </div>
             </div>
             <div className="checkout-listing p-1 my-2">
-              <button className="btn btn-primary">Proceed to pay</button>
+              <button
+                className="btn btn-primary"
+                onClick={() => displayRazorPay(totalAmount)}
+                disabled={!cart.length}
+                title={!cart.length ? `Shop items first` : undefined}
+              >
+                Proceed to pay
+              </button>
             </div>
           </div>
         </div>
