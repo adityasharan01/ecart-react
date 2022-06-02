@@ -1,6 +1,6 @@
 <div align="center">
 
-<img alt="always stream" src="public/favicon.ico" width="100px" height="100px" />
+<img alt="always stream" src="public/image512.png" width="100px" height="100px" />
 
 # Always-Shopping 🛒
 > An e-commerce application for watches
@@ -20,6 +20,9 @@ https://user-images.githubusercontent.com/40385118/169555060-acf3627f-a6ae-4c52-
 - Filter the products by price range
 - Add the products to wishlist
 - Add the products to cart
+- Address management
+- Payment integration
+- Order page
 
 ## ▶ Live url
 [always-shopping](https://always-shopping.netlify.app/)
