@@ -1,0 +1,11 @@
+.address-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1em;
+  cursor: pointer;
+}
+
+.check {
+  align-self: flex-start;
+}

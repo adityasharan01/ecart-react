@@ -6,6 +6,7 @@ import axios from "axios";
 import { useAuth } from "../../Context/auth";
 import { signupFormReducer } from "../../reducers";
 
+
 function Signup() {
   const [state, dispatch] = useReducer(signupFormReducer, {
     email: "",

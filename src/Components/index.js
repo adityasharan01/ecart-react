@@ -6,9 +6,11 @@ import ProductCard from "./ProductCard/ProductCard";
 import CheckBox from "./CheckBox/CheckBox";
 import Spinner from "./Spinner/Spinner";
 import Button from "./Button/Button";
-import Checkout from "./Checkout/Checkout";
+import CheckoutCard from "./Checkout/CheckoutCard";
 import Input from "./Input/Input";
 import RequiresAuth from "./RequiresAuth/RequiresAuth";
+import AddressCard from "./AddressCard/AddressCard";
+import AddressForm from "./AddressForm/AddressForm";
 
 export {
   CategoryCard,
@@ -19,7 +21,9 @@ export {
   CheckBox,
   Spinner,
   Button,
-  Checkout,
+  CheckoutCard,
   Input,
   RequiresAuth,
+  AddressCard,
+  AddressForm,
 };
