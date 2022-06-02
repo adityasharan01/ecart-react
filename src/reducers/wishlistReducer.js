@@ -1,3 +1,5 @@
+import { isItemInList } from "../utils";
+
 const initialState = {
   wishlist: [],
 };
@@ -7,7 +9,9 @@ export const wishlistReducer = (state, action) => {
     case "ADD_TO_WISHLIST":
       return {
         ...state,
-        wishlist: [...state.wishlist, { ...action.payload }],
+        wishlist: !isItemInList(action.payload._id, state.wishlist)
+          ? [...state.wishlist, { ...action.payload }]
+          : [...state.wishlist],
       };
     case "REMOVE_FROM_WISHLIST":
       return {

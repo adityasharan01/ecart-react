@@ -1,3 +1,5 @@
+import { isItemInList } from "../utils";
+
 const initialState = {
   cart: [],
 };
@@ -7,7 +9,9 @@ export const cartReducer = (state = initialState, action) => {
     case "ADD_TO_CART":
       return {
         ...state,
-        cart: [...state.cart, { ...action.payload }],
+        cart: !isItemInList(action.payload._id, state.cart)
+          ? [...state.cart, { ...action.payload }]
+          : [...state.cart ],
       };
     case "REMOVE_FROM_CART":
       return {
