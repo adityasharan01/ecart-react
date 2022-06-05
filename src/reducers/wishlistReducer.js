@@ -4,7 +4,7 @@ const initialState = {
   wishlist: [],
 };
 
-export const wishlistReducer = (state, action) => {
+export const wishlistReducer = (state = initialState, action) => {
   switch (action.type) {
     case "ADD_TO_WISHLIST":
       return {
