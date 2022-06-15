@@ -7,3 +7,9 @@
   justify-content: center;
   flex-wrap: wrap;
 }
+
+@media screen and (max-width: 37.5em) {
+  .wishlist-products {
+    height: auto;
+  }
+}

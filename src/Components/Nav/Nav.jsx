@@ -15,7 +15,7 @@ function Nav() {
 
   return (
     <>
-      <header>
+      <header className="px-2">
         <div className="header px-1">
           <div className="menu" onClick={() => toggleMobileNavbarVisibility()}>
             <i className="fas fa-bars"></i>
