@@ -5,7 +5,6 @@ import "./NotFound.css";
 function NotFound() {
   return (
     <div>
-      <Nav />
       <main className="center-div">
         <div className="page-not-found-card">
           <img

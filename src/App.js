@@ -1,7 +1,7 @@
 import Mockman from "mockman-js";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import { RequiresAuth } from "./Components";
+import { Nav, RequiresAuth } from "./Components";
 import {
   Home,
   Cart,
@@ -18,6 +18,7 @@ import {
 function App() {
   return (
     <div className="App">
+      <Nav/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />

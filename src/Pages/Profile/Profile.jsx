@@ -22,7 +22,6 @@ function Profile() {
 
   return (
     <div>
-      <Nav />
       <main className="center-div">
         <div className="card card-shadow m-1">
           <div className="card-section">

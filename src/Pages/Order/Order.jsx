@@ -13,7 +13,6 @@ function Order() {
 
   return (
     <div>
-      <Nav />
       <main>
         <div className="message center-div my-2">
           <h3>Congratulations 🎉</h3>

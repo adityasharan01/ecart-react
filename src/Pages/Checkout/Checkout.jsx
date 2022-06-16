@@ -82,7 +82,6 @@ function Checkout() {
 
   return (
     <div>
-      <Nav />
       <main className="checkout-page">
         <div className="heading p-2 flex center-div">
           <h3>Checkout</h3>

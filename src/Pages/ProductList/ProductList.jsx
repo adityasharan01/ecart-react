@@ -31,12 +31,11 @@ function ProductList() {
 
   return (
     <div>
-      <Nav />
       <div className="content">
         <div className="content-section grid-1-5-col">
           <Filter mobile={isFilterVisible} />
           <div className="content">
-            <main className="p-3">
+            <main className="px-3">
               <div className="heading p-2 flex center-div">
                 <h3>Showing All Products</h3>
                 <small className="px-2">

@@ -6,7 +6,6 @@ import "./Home.css";
 function Home() {
   return (
     <div>
-      <Nav />
       <div className="banner my-1">
         <img src="/images/watches.avif" alt="banner image" />
       </div>
