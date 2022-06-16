@@ -1,5 +1,5 @@
 import React from "react";
-import { Nav, Filter, ProductCard, Spinner } from "../../Components";
+import { Filter, ProductCard, Spinner } from "../../Components";
 import "./ProductList.css";
 import { useProductFilter } from "../../Context/product-filter";
 import {

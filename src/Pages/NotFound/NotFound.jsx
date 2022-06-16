@@ -1,5 +1,4 @@
 import React from "react";
-import { Nav } from "../../Components";
 import "./NotFound.css";
 
 function NotFound() {

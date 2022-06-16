@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Nav } from "../../Components";
 import { useAuth } from "../../Context/auth";
 import "./Profile.css";
 

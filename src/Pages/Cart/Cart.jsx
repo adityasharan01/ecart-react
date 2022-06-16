@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { CheckoutCard } from "../../Components";
 import CartCard from "../../Components/CartCard/CartCard";
-import Nav from "../../Components/Nav/Nav";
 import { useCart } from "../../Context/cart";
 import "./Cart.css";
 

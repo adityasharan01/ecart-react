@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Nav } from "../../Components";
 import { useOrder } from "../../Context/order-context";
 import "./Order.css";
 

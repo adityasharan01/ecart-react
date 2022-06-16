@@ -1,6 +1,6 @@
 import React, { useReducer, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Input, Nav } from "../../Components";
+import { Input } from "../../Components";
 import "./Auth.css";
 import axios from "axios";
 import { useAuth } from "../../Context/auth";

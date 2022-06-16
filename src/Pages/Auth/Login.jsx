@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Input, Nav } from "../../Components";
+import { Input } from "../../Components";
 import { useAuth } from "../../Context/auth";
 import "./Auth.css";
 
