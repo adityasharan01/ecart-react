@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Input, Nav } from "../../Components";
+import { Input } from "../../Components";
 import { useAuth } from "../../Context/auth";
 import "./Auth.css";
 
@@ -34,66 +34,63 @@ function Login() {
   };
 
   return (
-    <div className="px-2">
-      <Nav />
-      <main className="center-div">
-        <div className="card card-shadow m-1">
-          <div className="card-section">
-            <div className="card-header p-2">
-              <h3 className="center-div">Login</h3>
-              <form onSubmit={loginHandler}>
-                <div className="form-group my-2">
-                  <Input
-                    label="Email address"
-                    type="email"
-                    class_name="input-textbox p-1"
-                    placeholder="Enter email"
-                    value={email}
-                    changeHandler={(e) => setEmail(e.target.value)}
-                    required={true}
-                  />
-                </div>
-                <div className="form-group my-2">
-                  <Input
-                    label="Password"
-                    type={togglePassword ? "text" : "password"}
-                    class_name="input-textbox p-1"
-                    placeholder="Password"
-                    value={password}
-                    changeHandler={(e) => setPassword(e.target.value)}
-                    required={true}
-                  />
-                  <span
-                    className="show-password"
-                    onClick={() => setTogglePassword((prevState) => !prevState)}
-                  >
-                    {togglePassword ? (
-                      <i className="fas fa-eye"></i>
-                    ) : (
-                      <i className="fas fa-eye-slash"></i>
-                    )}
-                  </span>
-                </div>
-                {error && <span className="input-err p-1">{error}</span>}
-                <button type="submit" className="btn btn-primary">
-                  Submit
-                </button>
-                <button
-                  type="submit"
-                  className="btn btn-secondary"
-                  onClick={setDummyUserHandler}
+    <main className="center-div">
+      <div className="card card-shadow m-1">
+        <div className="card-section">
+          <div className="card-header p-2">
+            <h3 className="center-div">Login</h3>
+            <form onSubmit={loginHandler}>
+              <div className="form-group my-2">
+                <Input
+                  label="Email address"
+                  type="email"
+                  class_name="input-textbox p-1"
+                  placeholder="Enter email"
+                  value={email}
+                  changeHandler={(e) => setEmail(e.target.value)}
+                  required={true}
+                />
+              </div>
+              <div className="form-group my-2">
+                <Input
+                  label="Password"
+                  type={togglePassword ? "text" : "password"}
+                  class_name="input-textbox p-1"
+                  placeholder="Password"
+                  value={password}
+                  changeHandler={(e) => setPassword(e.target.value)}
+                  required={true}
+                />
+                <span
+                  className="show-password"
+                  onClick={() => setTogglePassword((prevState) => !prevState)}
                 >
-                  Login with dummy user
-                </button>
-              </form>
-              <Link to="/signup" className="btn-link center-div">
-                Create new account <i className="fas fa-arrow-right px-1"></i>
-              </Link>
-            </div>
+                  {togglePassword ? (
+                    <i className="fas fa-eye"></i>
+                  ) : (
+                    <i className="fas fa-eye-slash"></i>
+                  )}
+                </span>
+              </div>
+              {error && <span className="input-err p-1">{error}</span>}
+              <button type="submit" className="btn btn-primary">
+                Submit
+              </button>
+              <button
+                type="submit"
+                className="btn btn-secondary"
+                onClick={setDummyUserHandler}
+              >
+                Login with dummy user
+              </button>
+            </form>
+            <Link to="/signup" className="btn-link center-div">
+              Create new account <i className="fas fa-arrow-right px-1"></i>
+            </Link>
           </div>
         </div>
-      </main>
-    </div>
+      </div>
+    </main>
   );
 }
 

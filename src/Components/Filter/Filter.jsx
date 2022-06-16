@@ -4,14 +4,15 @@ import CheckBox from "../CheckBox/CheckBox";
 import Radio from "../Radio/Radio";
 import "./Filter.css";
 
-function Filter() {
+function Filter({ mobile }) {
   const { state, dispatch } = useProductFilter();
-  const { categories, sortBy, rating, price, includeOutOfStock, fastDelivery } = state;
+  const { categories, sortBy, rating, price, includeOutOfStock, fastDelivery } =
+    state;
   const { menWatches, womenWatches, boyWatches, girlWatches } = categories;
 
   return (
     <div>
-      <aside className="sidebar p-3">
+      <aside className={`${mobile && "mobile-sidebar"} sidebar p-3`}>
         <div className="filter-header flex my-1">
           <h4 className="pb-2">Filter</h4>
           <div
@@ -31,7 +32,9 @@ function Filter() {
             max="2000"
             step="500"
             value={price}
-            onChange={(e) => dispatch({ type: "SET_PRICE", payload: parseInt(e.target.value)})}
+            onChange={(e) =>
+              dispatch({ type: "SET_PRICE", payload: parseInt(e.target.value) })
+            }
           />
         </div>
         <div className="filter flex-column my-2">

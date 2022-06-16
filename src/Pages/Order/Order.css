@@ -38,4 +38,8 @@
     height: auto;
     overflow: hidden;
   }
+
+  .purchased-item{
+    width: 100%;
+  }
 }

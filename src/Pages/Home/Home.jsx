@@ -1,12 +1,10 @@
 import React from "react";
-import Nav from "../../Components/Nav/Nav";
 import { CategoryCard } from "../../Components";
 import "./Home.css";
 
 function Home() {
   return (
-    <div className="px-1">
-      <Nav />
+    <div>
       <div className="banner my-1">
         <img src="/images/watches.avif" alt="banner image" />
       </div>

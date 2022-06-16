@@ -1,24 +1,43 @@
-header{
-    position: sticky;
-    top: 0;
-    display: flex;
-    flex-wrap: wrap;
+header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.nav-right{
-    padding-right: 2rem;
+.header {
+  display: flex;
+  align-items: center;
+  gap: 1em;
 }
 
-.badge-icon-wrapper{
-    font-size: 1.2rem;
+.menu {
+  display: none;
+  cursor: pointer;
 }
 
-.badge-icon{
-    font-size: 1rem;
+.nav-right {
+  padding-right: 2rem;
 }
 
-@media screen and (max-width: 600px){
-    .header-brand > a{
-        font-size: 1.5rem;
-    }
+.badge-icon-wrapper {
+  font-size: 1.2rem;
+}
+
+.badge-icon {
+  font-size: 1rem;
+}
+
+@media screen and (max-width: 37.5em) {
+  .header-brand > a {
+    font-size: 2rem;
+  }
+
+  .nav-right {
+    display: none;
+  }
+
+  .menu {
+    display: block;
+  }
 }

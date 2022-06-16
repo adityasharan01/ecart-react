@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Nav } from "../../Components";
 import { useAuth } from "../../Context/auth";
 import "./Profile.css";
 
@@ -21,8 +20,7 @@ function Profile() {
   };
 
   return (
-    <div className="px-2">
-      <Nav />
+    <div>
       <main className="center-div">
         <div className="card card-shadow m-1">
           <div className="card-section">
