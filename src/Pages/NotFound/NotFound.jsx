@@ -4,7 +4,7 @@ import "./NotFound.css";
 
 function NotFound() {
   return (
-    <div className="px-1">
+    <div>
       <Nav />
       <main className="center-div">
         <div className="page-not-found-card">

@@ -12,7 +12,7 @@ function Order() {
   const { name, city, addState, country, pincode, phone } = address ?? {};
 
   return (
-    <div className="px-1">
+    <div>
       <Nav />
       <main>
         <div className="message center-div my-2">

@@ -5,7 +5,7 @@ import "./Home.css";
 
 function Home() {
   return (
-    <div className="px-1">
+    <div>
       <Nav />
       <div className="banner my-1">
         <img src="/images/watches.avif" alt="banner image" />

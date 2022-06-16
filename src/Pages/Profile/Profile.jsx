@@ -21,7 +21,7 @@ function Profile() {
   };
 
   return (
-    <div className="px-2">
+    <div>
       <Nav />
       <main className="center-div">
         <div className="card card-shadow m-1">

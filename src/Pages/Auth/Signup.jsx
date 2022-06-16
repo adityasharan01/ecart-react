@@ -42,7 +42,7 @@ function Signup() {
   };
 
   return (
-    <div className="px-2">
+    <div>
       <Nav />
       <main className="center-div mt-2">
         <div className="card auth-card card-shadow m-1">
