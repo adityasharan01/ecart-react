@@ -1,12 +1,18 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { CategoryCard } from "../../Components";
 import "./Home.css";
 
 function Home() {
   return (
     <div>
-      <div className="banner my-1">
-        <img src="/images/watches.avif" alt="banner image" />
+      <div className="home-hero-section center-div">
+        <section className="hero-disc center-div">
+          <h1 className="text-center">Watches for every moment</h1>
+          <Link to="/products" className="btn btn-primary btn-link btn-shop">
+            Shop now
+          </Link>
+        </section>
       </div>
       <div className="category my-2">
         <CategoryCard category="All" imgSrc="/images/all-watch.webp" />
