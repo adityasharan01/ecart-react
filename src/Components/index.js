@@ -12,6 +12,7 @@ import RequiresAuth from "./RequiresAuth/RequiresAuth";
 import AddressCard from "./AddressCard/AddressCard";
 import AddressForm from "./AddressForm/AddressForm";
 import MobileNavbar from "./MobileNavbar/MobileNavbar";
+import Footer from "./Footer/Footer";
 
 export {
   CategoryCard,
@@ -28,4 +29,5 @@ export {
   AddressCard,
   AddressForm,
   MobileNavbar,
+  Footer,
 };

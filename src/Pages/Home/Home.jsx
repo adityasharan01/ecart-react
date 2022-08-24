@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { CategoryCard } from "../../Components";
+import { CategoryCard, Footer } from "../../Components";
 import "./Home.css";
 
 function Home() {
@@ -21,6 +21,8 @@ function Home() {
         <CategoryCard category="Boys" imgSrc="/images/boys-watch.webp" />
         <CategoryCard category="Girls" imgSrc="/images/girl-watch.webp" />
       </div>
+      <hr className="separator"/>
+      <Footer />
     </div>
   );
 }
