@@ -8,7 +8,8 @@
 
 
 ## 📽 Preview
-https://user-images.githubusercontent.com/40385118/169555060-acf3627f-a6ae-4c52-b6df-290f384823ed.mp4
+https://user-images.githubusercontent.com/40385118/187060968-c309a9e2-7cde-46f7-9002-6bec3433d7ad.mp4
+
 
 
 ## 😎 Features
