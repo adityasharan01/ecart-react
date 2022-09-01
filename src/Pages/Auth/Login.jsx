@@ -3,6 +3,9 @@ import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Input } from "../../Components";
 import { useAuth } from "../../Context/auth";
+import { useCart } from "../../Context/cart";
+import { useWishlist } from "../../Context/wishlist";
+import { getUrlPrefix } from "../../utils";
 import "./Auth.css";
 
 function Login() {
@@ -11,15 +14,22 @@ function Login() {
   const [togglePassword, setTogglePassword] = useState(false);
   const [error, setError] = useState("");
   const { setUser } = useAuth();
+  const { cartDispatch } = useCart();
+  const { dispatch } = useWishlist();
   const navigate = useNavigate();
   const location = useLocation();
 
   const loginHandler = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post("/api/auth/login", { email, password });
+      const { data } = await axios.post(`${getUrlPrefix()}/api/auth/login`, {
+        email,
+        password,
+      });
       const { foundUser, encodedToken } = data;
       setUser(foundUser);
+      cartDispatch({ type: "INIT_CART", payload: foundUser?.cart });
+      dispatch({ type: "INIT_WISHLIST", payload: foundUser?.wishlist });
       localStorage.setItem("token", encodedToken);
       navigate(location.state?.from?.pathname || "/");
     } catch (error) {

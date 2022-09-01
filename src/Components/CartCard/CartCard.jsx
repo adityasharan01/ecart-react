@@ -1,7 +1,7 @@
 import React from "react";
 import { useCart } from "../../Context/cart";
 import { useWishlist } from "../../Context/wishlist";
-import { isItemInList } from "../../utils";
+import { getUrlPrefix, isItemInList } from "../../utils";
 import Button from "../Button/Button";
 import "./CartCard.css";
 import axios from "axios";
@@ -34,7 +34,7 @@ function CartCard({ product }) {
   const handleRemoveFromCart = async (_id) => {
     if (token) {
       try {
-        const res = await axios.delete(`api/user/wishlist/${_id}`, {
+        const res = await axios.delete(`${getUrlPrefix()}/api/user/wishlist/${_id}`, {
           headers: { authorization: token },
         });
         cartDispatch({ type: "REMOVE_FROM_CART", payload: _id });

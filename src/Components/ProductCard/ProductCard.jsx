@@ -1,7 +1,7 @@
 import React from "react";
 import { useWishlist } from "../../Context/wishlist";
 import "./ProductCard.css";
-import { isItemInList } from "../../utils";
+import { getUrlPrefix, isItemInList } from "../../utils";
 import { useCart } from "../../Context/cart";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Button from "../Button/Button";
@@ -33,7 +33,7 @@ function ProductCard({ product }) {
     if (user) {
       try {
         const res = await axios.post(
-          "api/user/wishlist",
+          `${getUrlPrefix()}/api/user/wishlist`,
           { product },
           {
             headers: { authorization: token },
@@ -51,7 +51,7 @@ function ProductCard({ product }) {
   const handleRemoveFromWishlist = async (_id) => {
     if (user) {
       try {
-        const res = await axios.delete(`api/user/wishlist/${_id}`, {
+        const res = await axios.delete(`${getUrlPrefix()}/api/user/wishlist/${_id}`, {
           headers: { authorization: token },
         });
         dispatch({ type: "REMOVE_FROM_WISHLIST", payload: _id });
@@ -67,7 +67,7 @@ function ProductCard({ product }) {
     if (user) {
       try {
         const res = await axios.post(
-          `api/user/cart`,
+          `${getUrlPrefix()}/api/user/cart`,
           { product },
           {
             headers: { authorization: token },

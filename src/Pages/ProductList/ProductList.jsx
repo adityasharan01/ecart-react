@@ -8,6 +8,7 @@ import {
   rateProducts,
   priceFilter,
   filterCategory,
+  getUrlPrefix,
 } from "../../utils";
 import { useDataFetch, useToggle } from "../../Hooks";
 
@@ -16,7 +17,10 @@ function ProductList() {
   const [isFilterVisible, toggleFilter] = useToggle();
   const { categories, sortBy, rating, price, includeOutOfStock, fastDelivery } =
     state;
-  const [{ data, isLoading, isError }] = useDataFetch("/api/products", []);
+  const [{ data, isLoading, isError }] = useDataFetch(
+    `${getUrlPrefix()}/api/products`,
+    []
+  );
   const { products } = data;
 
   const pricedFiltered = priceFilter(products, price);

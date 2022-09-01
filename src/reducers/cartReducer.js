@@ -6,12 +6,16 @@ const initialState = {
 
 export const cartReducer = (state = initialState, action) => {
   switch (action.type) {
+    case "INIT_CART":
+      return {
+        cart: action.payload,
+      };
     case "ADD_TO_CART":
       return {
         ...state,
         cart: !isItemInList(action.payload._id, state.cart)
           ? [...state.cart, { ...action.payload }]
-          : [...state.cart ],
+          : [...state.cart],
       };
     case "REMOVE_FROM_CART":
       return {
