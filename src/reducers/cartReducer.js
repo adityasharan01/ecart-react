@@ -1,44 +1,17 @@
-import { isItemInList } from "../utils";
-
 const initialState = {
   cart: [],
 };
 
-export const cartReducer = (state = initialState, action) => {
-  switch (action.type) {
+export const cartReducer = (state = initialState, { type, payload }) => {
+  switch (type) {
     case "INIT_CART":
       return {
-        cart: action.payload,
+        cart: payload,
       };
-    case "ADD_TO_CART":
+    case "UPDATE_CART":
       return {
         ...state,
-        cart: !isItemInList(action.payload._id, state.cart)
-          ? [...state.cart, { ...action.payload }]
-          : [...state.cart],
-      };
-    case "REMOVE_FROM_CART":
-      return {
-        ...state,
-        cart: state.cart.filter((item) => item._id !== action.payload),
-      };
-    case "INCREASE_QUANTITY":
-      return {
-        ...state,
-        cart: state.cart.map((item) =>
-          item._id === action.payload
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        ),
-      };
-    case "DECREASE_QUANTITY":
-      return {
-        ...state,
-        cart: state.cart.map((item) =>
-          item._id === action.payload
-            ? { ...item, quantity: item.quantity - 1 }
-            : item
-        ),
+        cart: payload,
       };
     case "CLEAR_CART":
       return {

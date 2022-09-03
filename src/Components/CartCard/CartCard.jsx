@@ -6,7 +6,7 @@ import Button from "../Button/Button";
 import "./CartCard.css";
 import axios from "axios";
 
-function CartCard({ product }) {
+function CartCard({ product, setIsloading }) {
   const { _id, image, productName, price, oldPrice, discount, quantity } =
     product;
   const { cartState, cartDispatch } = useCart();
@@ -14,35 +14,78 @@ function CartCard({ product }) {
   const isItemInWishlist = isItemInList(product._id, state.wishlist);
   const token = localStorage.getItem("token");
 
-  const moveToWishlistHandler = (product) => {
-    cartDispatch({ type: "REMOVE_FROM_CART", payload: product._id });
+  const moveToWishlistHandler = async (product) => {
+    handleRemoveFromCart(product._id);
     if (!isItemInWishlist) {
-      dispatch({ type: "ADD_TO_WISHLIST", payload: product });
+      try {
+        const res = await axios.post(
+          `${getUrlPrefix()}/api/user/wishlist`,
+          { product },
+          {
+            headers: { authorization: token },
+          }
+        );
+        dispatch({ type: "ADD_TO_WISHLIST", payload: product });
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 
-  const increaseQuantityHandler = (_id) => {
-    cartDispatch({ type: "INCREASE_QUANTITY", payload: _id });
+  const increaseQuantityHandler = async (_id) => {
+    setIsloading(true);
+    try {
+      const { data } = await axios.post(
+        `${getUrlPrefix()}/api/user/cart/${_id}`,
+        {
+          action: "increment",
+        },
+        {
+          headers: { authorization: token },
+        }
+      );
+      cartDispatch({ type: "UPDATE_CART", payload: data?.cart });
+      setIsloading(false);
+    } catch (error) {
+      console.error(error);
+      setIsloading(false);
+    }
   };
 
-  const decreaseQuantityHandler = (_id) => {
-    if (quantity > 1) {
-      cartDispatch({ type: "DECREASE_QUANTITY", payload: _id });
+  const decreaseQuantityHandler = async (_id) => {
+    setIsloading(true);
+    try {
+      const { data } = await axios.post(
+        `${getUrlPrefix()}/api/user/cart/${_id}`,
+        {
+          action: "decrement",
+        },
+        {
+          headers: { authorization: token },
+        }
+      );
+      cartDispatch({ type: "UPDATE_CART", payload: data?.cart });
+      setIsloading(false);
+    } catch (error) {
+      console.error(error);
+      setIsloading(false);
     }
   };
 
   const handleRemoveFromCart = async (_id) => {
-    if (token) {
-      try {
-        const res = await axios.delete(`${getUrlPrefix()}/api/user/wishlist/${_id}`, {
+    setIsloading(true);
+    try {
+      const { data } = await axios.delete(
+        `${getUrlPrefix()}/api/user/cart/${_id}`,
+        {
           headers: { authorization: token },
-        });
-        cartDispatch({ type: "REMOVE_FROM_CART", payload: _id });
-      } catch (e) {
-        console.error(e);
-      }
-    } else {
-      navigate("/login");
+        }
+      );
+      cartDispatch({ type: "UPDATE_CART", payload: data?.cart });
+      setIsloading(false);
+    } catch (error) {
+      console.error(error);
+      setIsloading(false);
     }
   };
 

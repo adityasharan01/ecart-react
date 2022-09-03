@@ -66,14 +66,14 @@ function ProductCard({ product }) {
   const handleAddToCart = async (product) => {
     if (user) {
       try {
-        const res = await axios.post(
+        const {data} = await axios.post(
           `${getUrlPrefix()}/api/user/cart`,
           { product },
           {
             headers: { authorization: token },
           }
         );
-        cartDispatch({ type: "ADD_TO_CART", payload: product });
+        cartDispatch({ type: "UPDATE_CART", payload: data?.cart });
       } catch (e) {
         console.error(e);
       }
