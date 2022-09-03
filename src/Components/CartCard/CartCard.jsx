@@ -53,22 +53,24 @@ function CartCard({ product, setIsloading }) {
   };
 
   const decreaseQuantityHandler = async (_id) => {
-    setIsloading(true);
-    try {
-      const { data } = await axios.post(
-        `${getUrlPrefix()}/api/user/cart/${_id}`,
-        {
-          action: "decrement",
-        },
-        {
-          headers: { authorization: token },
-        }
-      );
-      cartDispatch({ type: "UPDATE_CART", payload: data?.cart });
-      setIsloading(false);
-    } catch (error) {
-      console.error(error);
-      setIsloading(false);
+    if (quantity > 1) {
+      setIsloading(true);
+      try {
+        const { data } = await axios.post(
+          `${getUrlPrefix()}/api/user/cart/${_id}`,
+          {
+            action: "decrement",
+          },
+          {
+            headers: { authorization: token },
+          }
+        );
+        cartDispatch({ type: "UPDATE_CART", payload: data?.cart });
+        setIsloading(false);
+      } catch (error) {
+        console.error(error);
+        setIsloading(false);
+      }
     }
   };
 
@@ -106,7 +108,9 @@ function CartCard({ product, setIsloading }) {
           <p className="py-1">
             Quantity :{" "}
             <i
-              className="fas fa-minus px-1"
+              className={`fas fa-minus px-1 ${
+                quantity === 1 ? "text-gray disabled-element" : ""
+              }`}
               onClick={() => decreaseQuantityHandler(_id)}
             ></i>{" "}
             <span className="quantity px-2 border-s">{quantity}</span>{" "}
