@@ -18,14 +18,14 @@ function CartCard({ product, setIsloading }) {
     handleRemoveFromCart(product._id);
     if (!isItemInWishlist) {
       try {
-        const res = await axios.post(
+        const { data } = await axios.post(
           `${getUrlPrefix()}/api/user/wishlist`,
           { product },
           {
             headers: { authorization: token },
           }
         );
-        dispatch({ type: "ADD_TO_WISHLIST", payload: product });
+        dispatch({ type: "UPDATE_WISHLIST", payload: data?.wishlist });
       } catch (error) {
         console.error(error);
       }

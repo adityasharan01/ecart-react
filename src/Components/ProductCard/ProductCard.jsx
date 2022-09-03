@@ -32,16 +32,16 @@ function ProductCard({ product }) {
   const handleAddToWishlist = async (product) => {
     if (user) {
       try {
-        const res = await axios.post(
+        const { data } = await axios.post(
           `${getUrlPrefix()}/api/user/wishlist`,
           { product },
           {
             headers: { authorization: token },
           }
         );
-        dispatch({ type: "ADD_TO_WISHLIST", payload: product });
-      } catch (e) {
-        console.error(e);
+        dispatch({ type: "UPDATE_WISHLIST", payload: data?.wishlist });
+      } catch (error) {
+        console.error(error);
       }
     } else {
       navigate("/login", { state: { from: location } });
@@ -51,10 +51,13 @@ function ProductCard({ product }) {
   const handleRemoveFromWishlist = async (_id) => {
     if (user) {
       try {
-        const res = await axios.delete(`${getUrlPrefix()}/api/user/wishlist/${_id}`, {
-          headers: { authorization: token },
-        });
-        dispatch({ type: "REMOVE_FROM_WISHLIST", payload: _id });
+        const { data } = await axios.delete(
+          `${getUrlPrefix()}/api/user/wishlist/${_id}`,
+          {
+            headers: { authorization: token },
+          }
+        );
+        dispatch({ type: "UPDATE_WISHLIST", payload: data?.wishlist });
       } catch (e) {
         console.error(e);
       }
@@ -66,7 +69,7 @@ function ProductCard({ product }) {
   const handleAddToCart = async (product) => {
     if (user) {
       try {
-        const {data} = await axios.post(
+        const { data } = await axios.post(
           `${getUrlPrefix()}/api/user/cart`,
           { product },
           {
