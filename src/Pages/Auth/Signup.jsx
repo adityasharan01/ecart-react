@@ -5,6 +5,7 @@ import "./Auth.css";
 import axios from "axios";
 import { useAuth } from "../../Context/auth";
 import { signupFormReducer } from "../../reducers";
+import { getUrlPrefix } from "../../utils";
 
 function Signup() {
   const [state, dispatch] = useReducer(signupFormReducer, {
@@ -23,7 +24,7 @@ function Signup() {
   const signupHandler = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post(`/api/auth/signup`, {
+      const { data } = await axios.post(`${getUrlPrefix()}/api/auth/signup`, {
         email,
         firstName,
         lastName,

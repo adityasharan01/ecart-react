@@ -1,0 +1,1 @@
+export const getUrlPrefix = () => `https://always-shopping-backend.sanketdhabarde.repl.co`;

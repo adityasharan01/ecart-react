@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../Context/auth";
 import { useCart } from "../../Context/cart";
 import { useWishlist } from "../../Context/wishlist";
 import { useToggle } from "../../Hooks/useToggle";
@@ -11,7 +10,6 @@ function Nav() {
   const { state } = useWishlist();
   const { cartState } = useCart();
   const [isMobileNavbarVisible, toggleMobileNavbarVisibility] = useToggle();
-  const { user } = useAuth();
 
   return (
     <>
@@ -42,7 +40,7 @@ function Nav() {
           >
             <i className="far fa-heart"></i>
             <span className="badge-icon center-div">
-              {state.wishlist.length}
+              {state.wishlist?.length}
             </span>
           </Link>
           <Link
@@ -51,7 +49,7 @@ function Nav() {
             className="badge-icon-wrapper center-div p-1 btn-link"
           >
             <i className="fas fa-cart-plus"></i>
-            <span className="badge-icon">{cartState.cart.length}</span>
+            <span className="badge-icon">{cartState.cart?.length}</span>
           </Link>
         </div>
       </header>

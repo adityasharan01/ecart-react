@@ -1,12 +1,12 @@
 import React from "react";
 import { useCart } from "../../Context/cart";
 import { useWishlist } from "../../Context/wishlist";
-import { isItemInList } from "../../utils";
+import { getUrlPrefix, isItemInList } from "../../utils";
 import Button from "../Button/Button";
 import "./CartCard.css";
 import axios from "axios";
 
-function CartCard({ product }) {
+function CartCard({ product, setIsloading }) {
   const { _id, image, productName, price, oldPrice, discount, quantity } =
     product;
   const { cartState, cartDispatch } = useCart();
@@ -14,35 +14,80 @@ function CartCard({ product }) {
   const isItemInWishlist = isItemInList(product._id, state.wishlist);
   const token = localStorage.getItem("token");
 
-  const moveToWishlistHandler = (product) => {
-    cartDispatch({ type: "REMOVE_FROM_CART", payload: product._id });
+  const moveToWishlistHandler = async (product) => {
+    handleRemoveFromCart(product._id);
     if (!isItemInWishlist) {
-      dispatch({ type: "ADD_TO_WISHLIST", payload: product });
+      try {
+        const { data } = await axios.post(
+          `${getUrlPrefix()}/api/user/wishlist`,
+          { product },
+          {
+            headers: { authorization: token },
+          }
+        );
+        dispatch({ type: "UPDATE_WISHLIST", payload: data?.wishlist });
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 
-  const increaseQuantityHandler = (_id) => {
-    cartDispatch({ type: "INCREASE_QUANTITY", payload: _id });
+  const increaseQuantityHandler = async (_id) => {
+    setIsloading(true);
+    try {
+      const { data } = await axios.post(
+        `${getUrlPrefix()}/api/user/cart/${_id}`,
+        {
+          action: "increment",
+        },
+        {
+          headers: { authorization: token },
+        }
+      );
+      cartDispatch({ type: "UPDATE_CART", payload: data?.cart });
+      setIsloading(false);
+    } catch (error) {
+      console.error(error);
+      setIsloading(false);
+    }
   };
 
-  const decreaseQuantityHandler = (_id) => {
+  const decreaseQuantityHandler = async (_id) => {
     if (quantity > 1) {
-      cartDispatch({ type: "DECREASE_QUANTITY", payload: _id });
+      setIsloading(true);
+      try {
+        const { data } = await axios.post(
+          `${getUrlPrefix()}/api/user/cart/${_id}`,
+          {
+            action: "decrement",
+          },
+          {
+            headers: { authorization: token },
+          }
+        );
+        cartDispatch({ type: "UPDATE_CART", payload: data?.cart });
+        setIsloading(false);
+      } catch (error) {
+        console.error(error);
+        setIsloading(false);
+      }
     }
   };
 
   const handleRemoveFromCart = async (_id) => {
-    if (token) {
-      try {
-        const res = await axios.delete(`api/user/wishlist/${_id}`, {
+    setIsloading(true);
+    try {
+      const { data } = await axios.delete(
+        `${getUrlPrefix()}/api/user/cart/${_id}`,
+        {
           headers: { authorization: token },
-        });
-        cartDispatch({ type: "REMOVE_FROM_CART", payload: _id });
-      } catch (e) {
-        console.error(e);
-      }
-    } else {
-      navigate("/login");
+        }
+      );
+      cartDispatch({ type: "UPDATE_CART", payload: data?.cart });
+      setIsloading(false);
+    } catch (error) {
+      console.error(error);
+      setIsloading(false);
     }
   };
 
@@ -63,7 +108,9 @@ function CartCard({ product }) {
           <p className="py-1">
             Quantity :{" "}
             <i
-              className="fas fa-minus px-1"
+              className={`fas fa-minus px-1 ${
+                quantity === 1 ? "text-gray disabled-element" : ""
+              }`}
               onClick={() => decreaseQuantityHandler(_id)}
             ></i>{" "}
             <span className="quantity px-2 border-s">{quantity}</span>{" "}

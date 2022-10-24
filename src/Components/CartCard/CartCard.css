@@ -21,6 +21,10 @@
   border: 1px solid var(--secondary-text);
 }
 
+.disabled-element {
+  cursor: not-allowed;
+}
+
 @media screen and (max-width: 37.5em) {
   .cart-card {
     width: 20rem;
