@@ -1,30 +1,18 @@
-export const signupFormReducer = (state, action) => {
+export const initialState = {
+  email: "",
+  firstName: "",
+  lastName: "",
+  password: "",
+  confirmPassword: "",
+};
+
+export const signupFormReducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
-    case "SET_EMAIL":
+    case "SET_INFO":
       return {
         ...state,
-        email: payload,
-      };
-    case "SET_FIRST_NAME":
-      return {
-        ...state,
-        firstName: payload,
-      };
-    case "SET_LAST_NAME":
-      return {
-        ...state,
-        lastName: payload,
-      };
-    case "SET_PASSWORD":
-      return {
-        ...state,
-        password: payload,
-      };
-    case "SET_CONFIRM_PASSWORD":
-      return {
-        ...state,
-        confirmPassword: payload,
+        [payload.name]: payload.value,
       };
     default:
       return state;
