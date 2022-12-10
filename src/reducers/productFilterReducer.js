@@ -1,4 +1,4 @@
-const initialState = {
+export const initialState = {
   sortBy: "",
   rating: 0,
   price: 2000,
