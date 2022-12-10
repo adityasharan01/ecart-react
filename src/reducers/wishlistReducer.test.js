@@ -1,17 +1,16 @@
-import { wishlistReducer } from "./wishlistReducer";
+import { wishlistReducer, initialState } from "./wishlistReducer";
 
 describe("Testing wishlist reducer", () => {
-  it("ADD_TO_WISHLIST should add the product to wishlist", () => {
-    const initialState = {
-      wishlist: [
-        { _id: "1234", productName: "xyz" },
-        { _id: "1236", productName: "pqr" },
-      ],
-    };
+  it("INIT_WISHLIST should initialize the wishlist", () => {
+    const wishlist = [
+      { _id: "1234", productName: "xyz" },
+      { _id: "1236", productName: "pqr" },
+      { _id: "1235", productName: "abc" },
+    ];
 
     const action = {
-      type: "ADD_TO_WISHLIST",
-      payload: { _id: "1235", productName: "abc" },
+      type: "INIT_WISHLIST",
+      payload: wishlist,
     };
 
     const expectedState = {
@@ -24,57 +23,38 @@ describe("Testing wishlist reducer", () => {
 
     const state = wishlistReducer(initialState, action);
 
-    expect(state).toEqual(expectedState)
+    expect(state).toEqual(expectedState);
   });
 
-  it("ADD_TO_WISHLIST should not add the duplicate product to wishlist", () => {
+  it("UPDATE_WISHLIST should update the wishlist with given items", () => {
     const initialState = {
       wishlist: [
         { _id: "1234", productName: "xyz" },
         { _id: "1236", productName: "pqr" },
       ],
     };
+
+    const wishlist = [
+      { _id: "1234", productName: "xyz" },
+      { _id: "1236", productName: "pqr" },
+      { _id: "1235", productName: "abc" },
+    ];
 
     const action = {
-      type: "ADD_TO_WISHLIST",
-      payload: { _id: "1236", productName: "pqr" },
-    };
+      type: "UPDATE_WISHLIST",
+      payload: wishlist
+    }
 
     const expectedState = {
-      wishlist: [
-        { _id: "1234", productName: "xyz" },
-        { _id: "1236", productName: "pqr" },
-      ],
-    };
-
-    const state = wishlistReducer(initialState, action);
-
-    expect(state).toEqual(expectedState)
-  });
-
-  it("REMOVE_FROM_WISHLIST should remove product from wishlist", () => {
-    const initialState = {
       wishlist: [
         { _id: "1234", productName: "xyz" },
         { _id: "1236", productName: "pqr" },
         { _id: "1235", productName: "abc" },
       ],
-    };
-
-    const action = {
-      type: "REMOVE_FROM_WISHLIST",
-      payload: "1235",
-    };
-
-    const expectedState = {
-      wishlist: [
-        { _id: "1234", productName: "xyz" },
-        { _id: "1236", productName: "pqr" },
-      ],
-    };
+    }
 
     const state = wishlistReducer(initialState, action);
 
-    expect(state).toEqual(expectedState)
+    expect(state).toEqual(expectedState);
   });
 });
