@@ -41,6 +41,13 @@ function Signup() {
     }
   };
 
+  const handleChange = (e) => {
+    dispatch({
+      type: "SET_INFO",
+      payload: { name: e.target.name, value: e.target.value },
+    });
+  };
+
   return (
     <main className="center-div mt-2">
       <div className="card auth-card card-shadow m-1">
@@ -54,10 +61,9 @@ function Signup() {
                   type="email"
                   class_name="input-textbox p-1"
                   placeholder="Enter email"
+                  name="email"
                   value={email}
-                  changeHandler={(e) =>
-                    dispatch({ type: "SET_EMAIL", payload: e.target.value })
-                  }
+                  changeHandler={handleChange}
                   required={true}
                 />
               </div>
@@ -67,13 +73,9 @@ function Signup() {
                   type="text"
                   class_name="input-textbox p-1"
                   placeholder="Enter first name"
+                  name="firstName"
                   value={firstName}
-                  changeHandler={(e) =>
-                    dispatch({
-                      type: "SET_FIRST_NAME",
-                      payload: e.target.value,
-                    })
-                  }
+                  changeHandler={handleChange}
                   required={true}
                 />
               </div>
@@ -83,13 +85,9 @@ function Signup() {
                   type="text"
                   class_name="input-textbox p-1"
                   placeholder="Enter last name"
+                  name="lastName"
                   value={lastName}
-                  changeHandler={(e) =>
-                    dispatch({
-                      type: "SET_LAST_NAME",
-                      payload: e.target.value,
-                    })
-                  }
+                  changeHandler={handleChange}
                   required={true}
                 />
               </div>
@@ -99,13 +97,9 @@ function Signup() {
                   type={togglePassword ? "text" : "password"}
                   class_name="input-textbox p-1"
                   placeholder="Password"
+                  name="password"
                   value={password}
-                  changeHandler={(e) =>
-                    dispatch({
-                      type: "SET_PASSWORD",
-                      payload: e.target.value,
-                    })
-                  }
+                  changeHandler={handleChange}
                   required={true}
                 />
                 <span
@@ -125,13 +119,9 @@ function Signup() {
                   type="password"
                   class_name="input-textbox p-1"
                   placeholder="Password"
+                  name="confirmPassword"
                   value={confirmPassword}
-                  changeHandler={(e) =>
-                    dispatch({
-                      type: "SET_CONFIRM_PASSWORD",
-                      payload: e.target.value,
-                    })
-                  }
+                  changeHandler={handleChange}
                   required={true}
                 />
               </div>

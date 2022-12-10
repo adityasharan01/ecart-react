@@ -28,6 +28,16 @@ function AddressForm({ toggleAddressForm }) {
     toggleAddressForm();
   };
 
+  const handleChange = (e) => {
+    dispatch({
+      type: "SET_ADDRESS",
+      payload: {
+        name: e.target.name,
+        value: e.target.value,
+      },
+    });
+  };
+
   return (
     <div className="backdrop" onClick={toggleAddressForm}>
       <div
@@ -38,7 +48,10 @@ function AddressForm({ toggleAddressForm }) {
           <div className="card-header p-2">
             <div className="card-header-heading">
               <h3>Address form</h3>
-              <i className="fas fa-times times-icon" onClick={toggleAddressForm}></i>
+              <i
+                className="fas fa-times times-icon"
+                onClick={toggleAddressForm}
+              ></i>
             </div>
             <form onSubmit={addressHandler}>
               <div className="form-group my-2">
@@ -47,10 +60,9 @@ function AddressForm({ toggleAddressForm }) {
                   type="text"
                   class_name="input-textbox p-1"
                   placeholder="Enter name"
+                  name="name"
                   value={name}
-                  changeHandler={(e) =>
-                    dispatch({ type: "SET_NAME", payload: e.target.value })
-                  }
+                  changeHandler={handleChange}
                   required={true}
                 />
               </div>
@@ -60,10 +72,9 @@ function AddressForm({ toggleAddressForm }) {
                   type="text"
                   class_name="input-textbox p-1"
                   placeholder="Enter city"
+                  name="city"
                   value={city}
-                  changeHandler={(e) =>
-                    dispatch({ type: "SET_CITY", payload: e.target.value })
-                  }
+                  changeHandler={handleChange}
                   required={true}
                 />
               </div>
@@ -73,10 +84,9 @@ function AddressForm({ toggleAddressForm }) {
                   type="text"
                   class_name="input-textbox p-1"
                   placeholder="Enter state"
+                  name="addState"
                   value={addState}
-                  changeHandler={(e) =>
-                    dispatch({ type: "SET_STATE", payload: e.target.value })
-                  }
+                  changeHandler={handleChange}
                   required={true}
                 />
               </div>
@@ -86,10 +96,9 @@ function AddressForm({ toggleAddressForm }) {
                   type="text"
                   class_name="input-textbox p-1"
                   placeholder="Enter country"
+                  name="country"
                   value={country}
-                  changeHandler={(e) =>
-                    dispatch({ type: "SET_COUNTRY", payload: e.target.value })
-                  }
+                  changeHandler={handleChange}
                   required={true}
                 />
               </div>
@@ -99,10 +108,9 @@ function AddressForm({ toggleAddressForm }) {
                   type="text"
                   class_name="input-textbox p-1"
                   placeholder="Enter pin code"
+                  name="pincode"
                   value={pincode}
-                  changeHandler={(e) =>
-                    dispatch({ type: "SET_PIN_CODE", payload: e.target.value })
-                  }
+                  changeHandler={handleChange}
                   required={true}
                 />
               </div>
@@ -112,13 +120,9 @@ function AddressForm({ toggleAddressForm }) {
                   type="text"
                   class_name="input-textbox p-1"
                   placeholder="Enter phone number"
+                  name="phone"
                   value={phone}
-                  changeHandler={(e) =>
-                    dispatch({
-                      type: "SET_PHONE_NUMBER",
-                      payload: e.target.value,
-                    })
-                  }
+                  changeHandler={handleChange}
                   required={true}
                 />
               </div>

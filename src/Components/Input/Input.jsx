@@ -5,6 +5,7 @@ function Input({
   type,
   class_name,
   placeholder,
+  name,
   value,
   changeHandler,
   disabled,
@@ -21,6 +22,7 @@ function Input({
         onChange={changeHandler}
         disabled={disabled}
         required={required}
+        name={name}
       />
     </label>
   );
