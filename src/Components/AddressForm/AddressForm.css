@@ -9,8 +9,29 @@
 
 .address-form-card {
   width: 25rem;
+  height: 35rem;
+  overflow-y: scroll;
   background-color: var(--primary-bg);
   position: absolute;
-  left: 40%;
+  left: 0;
   top: 10%;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.card-header-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.times-icon {
+  font-size: 1.6rem;
+}
+
+@media screen and (max-width: 37.5em) {
+  .address-form-card {
+    width: 100%;
+  }
 }

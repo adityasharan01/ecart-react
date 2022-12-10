@@ -1,7 +1,7 @@
 import React from "react";
 import { useWishlist } from "../../Context/wishlist";
 import "./ProductCard.css";
-import { isItemInList } from "../../utils";
+import { getUrlPrefix, isItemInList } from "../../utils";
 import { useCart } from "../../Context/cart";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Button from "../Button/Button";
@@ -29,57 +29,59 @@ function ProductCard({ product }) {
   const location = useLocation();
   const { user } = useAuth();
 
-
   const handleAddToWishlist = async (product) => {
     if (user) {
       try {
-        const res = await axios.post(
-          "api/user/wishlist",
+        const { data } = await axios.post(
+          `${getUrlPrefix()}/api/user/wishlist`,
           { product },
           {
             headers: { authorization: token },
           }
         );
-        dispatch({ type: "ADD_TO_WISHLIST", payload: product });
-      } catch (e) {
-        console.error(e);
+        dispatch({ type: "UPDATE_WISHLIST", payload: data?.wishlist });
+      } catch (error) {
+        console.error(error);
       }
     } else {
-      navigate("/login", { state: { from: location }});
+      navigate("/login", { state: { from: location } });
     }
   };
 
   const handleRemoveFromWishlist = async (_id) => {
     if (user) {
       try {
-        const res = await axios.delete(`api/user/wishlist/${_id}`, {
-          headers: { authorization: token },
-        });
-        dispatch({ type: "REMOVE_FROM_WISHLIST", payload: _id });
+        const { data } = await axios.delete(
+          `${getUrlPrefix()}/api/user/wishlist/${_id}`,
+          {
+            headers: { authorization: token },
+          }
+        );
+        dispatch({ type: "UPDATE_WISHLIST", payload: data?.wishlist });
       } catch (e) {
         console.error(e);
       }
     } else {
-      navigate("/login", { state: { from: location }});
+      navigate("/login", { state: { from: location } });
     }
   };
 
   const handleAddToCart = async (product) => {
     if (user) {
       try {
-        const res = await axios.post(
-          `api/user/cart`,
+        const { data } = await axios.post(
+          `${getUrlPrefix()}/api/user/cart`,
           { product },
           {
             headers: { authorization: token },
           }
         );
-        cartDispatch({ type: "ADD_TO_CART", payload: product });
+        cartDispatch({ type: "UPDATE_CART", payload: data?.cart });
       } catch (e) {
         console.error(e);
       }
     } else {
-      navigate("/login", { state: { from: location }});
+      navigate("/login", { state: { from: location } });
     }
   };
 
@@ -105,10 +107,12 @@ function ProductCard({ product }) {
         )}
         <div className="card-header p-1 center-div">
           <h4>{productName}</h4>
-          <p className="card-desc px-1">{description}</p>
+          <p className="card-desc px-1" title={description}>
+            {description}
+          </p>
           <div className="card-price-section center-div py-1">
             <h3>₹{price}</h3> <del>₹{oldPrice}</del>
-            <span>{rate} ★</span>
+            <span>{rate}⭐</span>
           </div>
           {itemInCart ? (
             <Link to="/cart">

@@ -1,6 +1,6 @@
 import React from "react";
 import { v4 as uuid } from "uuid";
-import { AddressCard, AddressForm, Nav } from "../../Components";
+import { AddressCard, AddressForm } from "../../Components";
 import { useAddress } from "../../Context/address";
 import { useCart } from "../../Context/cart";
 import { useToggle } from "../../Hooks/useToggle";
@@ -81,8 +81,7 @@ function Checkout() {
   };
 
   return (
-    <div className="px-2">
-      <Nav />
+    <div>
       <main className="checkout-page">
         <div className="heading p-2 flex center-div">
           <h3>Checkout</h3>

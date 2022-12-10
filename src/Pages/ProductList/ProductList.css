@@ -14,3 +14,30 @@ main {
   overflow-y: scroll;
   overflow-x: hidden;
 }
+
+/* mobile filter */
+.mobile-filter {
+  width: 100%;
+  height: 10vh;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--primary-bg);
+}
+
+@media screen and (max-width: 37.5em) {
+  .grid-1-5-col {
+    grid-template-columns: 1fr;
+  }
+
+  .mobile-filter {
+    display: flex;
+  }
+
+  .product-list {
+    justify-content: center;
+  }
+}

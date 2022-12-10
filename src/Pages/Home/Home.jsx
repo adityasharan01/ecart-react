@@ -1,14 +1,18 @@
 import React from "react";
-import Nav from "../../Components/Nav/Nav";
-import { CategoryCard } from "../../Components";
+import { Link } from "react-router-dom";
+import { CategoryCard, Footer } from "../../Components";
 import "./Home.css";
 
 function Home() {
   return (
-    <div className="px-1">
-      <Nav />
-      <div className="banner my-1">
-        <img src="/images/watches.avif" alt="banner image" />
+    <div>
+      <div className="home-hero-section center-div">
+        <section className="hero-disc center-div">
+          <h1 className="text-center">Watches for every moment</h1>
+          <Link to="/products" className="btn btn-primary btn-link btn-shop">
+            Shop now
+          </Link>
+        </section>
       </div>
       <div className="category my-2">
         <CategoryCard category="All" imgSrc="/images/all-watch.webp" />
@@ -17,6 +21,8 @@ function Home() {
         <CategoryCard category="Boys" imgSrc="/images/boys-watch.webp" />
         <CategoryCard category="Girls" imgSrc="/images/girl-watch.webp" />
       </div>
+      <hr className="separator"/>
+      <Footer />
     </div>
   );
 }

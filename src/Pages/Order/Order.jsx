@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Nav } from "../../Components";
 import { useOrder } from "../../Context/order-context";
 import "./Order.css";
 
@@ -12,8 +11,7 @@ function Order() {
   const { name, city, addState, country, pincode, phone } = address ?? {};
 
   return (
-    <div className="px-1">
-      <Nav />
+    <div>
       <main>
         <div className="message center-div my-2">
           <h3>Congratulations 🎉</h3>
@@ -69,6 +67,7 @@ function Order() {
                       <p>Price : ₹{price}</p>
                       <p>Quantity : {quantity}</p>
                     </div>
+                    <hr className="separator"/>
                   </div>
                 )
               )}

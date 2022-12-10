@@ -21,3 +21,21 @@
 .filter-header .btn-link {
   text-decoration: underline;
 }
+
+@media screen and (max-width: 37.5em) {
+  .sidebar {
+    display: none;
+  }
+
+  .mobile-sidebar {
+    display: block;
+    position: absolute;
+    bottom: 10%;
+    background-color: var(--primary-bg);
+    z-index: 1;
+    width: 100%;
+    height: 50vh;
+    padding: 0 1rem;
+    overflow-y: scroll;
+  }
+}

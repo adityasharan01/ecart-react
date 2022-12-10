@@ -1,6 +1,8 @@
 :root {
   --gray-color: #c2c2c2;
   --text-green: #0ec938;
+  --primary-bg-transparent: #1a202ce6;
+  --image-grayout: #00000080;
 }
 
 /* scroll */

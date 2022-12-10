@@ -36,7 +36,10 @@ function AddressForm({ toggleAddressForm }) {
       >
         <div className="card-section">
           <div className="card-header p-2">
-            <h3 className="center-div">Address form</h3>
+            <div className="card-header-heading">
+              <h3>Address form</h3>
+              <i className="fas fa-times times-icon" onClick={toggleAddressForm}></i>
+            </div>
             <form onSubmit={addressHandler}>
               <div className="form-group my-2">
                 <Input

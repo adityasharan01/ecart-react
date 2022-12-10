@@ -6,3 +6,4 @@ export { filterCategory } from "./filterCategory";
 export { isItemInList } from "./isItemInList";
 export { totalItemsInList } from "./cartUtils/totalItems";
 export { totalPrice } from "./cartUtils/totalPrice";
+export { getUrlPrefix } from "./getUrlPrefix";
