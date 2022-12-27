@@ -28,21 +28,4 @@ describe("AddressCard tests", () => {
 
     expect(addressCard).toBeInTheDocument;
   });
-
-  it("should select the address", async () => {
-    render(
-      <AddressProvider>
-        <AddressCard address={address} />
-      </AddressProvider>
-    );
-
-    const addressCard = screen.getByRole("heading", {
-      name: /Monkey D. Luffy/i,
-    });
-    const radioEl = screen.getByRole("radio");
-
-    await userEvent.click(addressCard);
-
-    expect(radioEl).toBeChecked;
-  });
 });
