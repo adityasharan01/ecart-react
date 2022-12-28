@@ -42,8 +42,8 @@ describe("Testing wishlist reducer", () => {
 
     const action = {
       type: "UPDATE_WISHLIST",
-      payload: wishlist
-    }
+      payload: wishlist,
+    };
 
     const expectedState = {
       wishlist: [
@@ -51,10 +51,20 @@ describe("Testing wishlist reducer", () => {
         { _id: "1236", productName: "pqr" },
         { _id: "1235", productName: "abc" },
       ],
-    }
+    };
 
     const state = wishlistReducer(initialState, action);
 
     expect(state).toEqual(expectedState);
+  });
+
+  it("should call the default state", () => {
+    const action = {
+      type: "DUMMY_TYPE",
+    };
+
+    const state = wishlistReducer(initialState, action);
+
+    expect(state).toEqual(initialState);
   });
 });

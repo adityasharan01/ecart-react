@@ -229,4 +229,14 @@ describe("productFilterReducer tests", () => {
 
     expect(state).toEqual(expectedState);
   });
+
+  it("should call the default state", () => {
+    const action = {
+      type: "DUMMY_TYPE",
+    };
+
+    const state = productFilterReducer(initialState, action);
+
+    expect(state).toEqual(initialState);
+  });
 });
