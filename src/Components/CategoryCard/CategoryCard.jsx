@@ -27,7 +27,7 @@ function CategoryCard({ category, imgSrc }) {
   };
 
   return (
-    <div onClick={() => chooseCategoryHandler(category)}>
+    <div onClick={() => chooseCategoryHandler(category)} data-testid="category-card">
       <Link to="/products" className="btn-link">
         <div className="card category-card m-1">
           <div className="card-section center-div">
@@ -36,7 +36,7 @@ function CategoryCard({ category, imgSrc }) {
               src={imgSrc}
               alt="card img"
             />
-            <span className="card-badge p-1">{category}</span>
+            <span className="card-badge p-1" data-testid="category">{category}</span>
           </div>
         </div>
       </Link>
