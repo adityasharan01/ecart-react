@@ -36,9 +36,11 @@ describe("CategoryCard tests", () => {
       </BrowserRouter>
     );
 
-    const categoryCardEl = screen.getByTestId("category-card");
+    const categoryEl = screen.getByTestId("category");
 
-    await userEvent.click(categoryCardEl);
+    await userEvent.click(categoryEl);
+
+    expect(window.location.pathname).toBe("/products");
   });
 
   it("should select the category as Womens when click on card", async () => {
@@ -53,9 +55,11 @@ describe("CategoryCard tests", () => {
       </BrowserRouter>
     );
 
-    const categoryCardEl = screen.getByTestId("category-card");
+    const categoryEl = screen.getByTestId("category");
 
-    await userEvent.click(categoryCardEl);
+    await userEvent.click(categoryEl);
+
+    expect(window.location.pathname).toBe("/products");
   });
 
   it("should select the category as Mens when click on card", async () => {
@@ -70,9 +74,11 @@ describe("CategoryCard tests", () => {
       </BrowserRouter>
     );
 
-    const categoryCardEl = screen.getByTestId("category-card");
+    const categoryEl = screen.getByTestId("category");
 
-    await userEvent.click(categoryCardEl);
+    await userEvent.click(categoryEl);
+
+    expect(window.location.pathname).toBe("/products");
   });
 
   it("should select the category as girls when click on card", async () => {
@@ -87,9 +93,11 @@ describe("CategoryCard tests", () => {
       </BrowserRouter>
     );
 
-    const categoryCardEl = screen.getByTestId("category-card");
+    const categoryEl = screen.getByTestId("category");
 
-    await userEvent.click(categoryCardEl);
+    await userEvent.click(categoryEl);
+
+    expect(window.location.pathname).toBe("/products");
   });
 
   it("should select the category as All when click on card", async () => {
@@ -103,8 +111,10 @@ describe("CategoryCard tests", () => {
       </BrowserRouter>
     );
 
-    const categoryCardEl = screen.getByTestId("category-card");
+    const categoryEl = screen.getByTestId("category");
 
-    await userEvent.click(categoryCardEl);
+    await userEvent.click(categoryEl);
+
+    expect(window.location.pathname).toBe("/products");
   });
 });
