@@ -23,7 +23,10 @@ function Filter({ mobile }) {
           </div>
         </div>
         <div className="filter flex-column my-1">
-          <h4>Price</h4> {`₹${price} / ₹2000`}
+          <label htmlFor="volume">
+            <h4>Price</h4>
+          </label>
+          <span data-testid="currentPrice">{`₹${price} / ₹2000`}</span>
           <input
             type="range"
             id="volume"
