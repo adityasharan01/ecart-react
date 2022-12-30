@@ -44,4 +44,20 @@ describe("AddressForm tests", () => {
 
     expect(nameInputEl.value).toBe("Sherlock Holmes");
   });
+
+  it("should change the input when type name", async () => {
+    const toggleAddressFormMock = jest.fn();
+
+    render(
+      <AddressProvider>
+        <AddressForm toggleAddressForm={toggleAddressFormMock} />
+      </AddressProvider>
+    );
+
+    const nameInputEl = screen.getByRole("textbox", { name: /Name/i });
+
+    await userEvent.type(nameInputEl, "Sank");
+
+    expect(nameInputEl.value).toBe("Sank");
+  });
 });
