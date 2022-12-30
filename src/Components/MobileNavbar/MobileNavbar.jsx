@@ -9,7 +9,7 @@ function MobileNavbar({ toggleMobileNavbarVisibility }) {
         className="mobile-navbar-header"
         onClick={() => toggleMobileNavbarVisibility()}
       >
-        <div className="mobile-navs-header p-2">
+        <div className="mobile-navs-header p-2" data-testid="closeNavbar">
           <i className="fas fa-times"></i>
         </div>
       </div>
