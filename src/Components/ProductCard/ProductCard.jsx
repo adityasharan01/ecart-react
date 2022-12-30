@@ -80,6 +80,7 @@ function ProductCard({ product }) {
           <span
             className={`card-dismiss inwishlist-${itemInWishlist} center-div p-1`}
             onClick={() => handleRemoveFromWishlist(_id)}
+            data-testid="removeFromWishlistIcon"
           >
             <i className="fas fa-heart"></i>
           </span>
@@ -87,6 +88,7 @@ function ProductCard({ product }) {
           <span
             className={`card-dismiss inwishlist-${itemInWishlist} center-div p-1`}
             onClick={() => handleAddToWishlist(product)}
+            data-testid="addToWishlistIcon"
           >
             <i className="fas fa-heart"></i>
           </span>

@@ -16,4 +16,4 @@ const WishlistProvider = ({ children }) => {
   );
 };
 
-export { WishlistProvider, useWishlist };
+export { WishlistProvider, useWishlist, WishlistContext };
