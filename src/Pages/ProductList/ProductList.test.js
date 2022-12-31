@@ -1,5 +1,8 @@
 import { act, render, screen } from "@testing-library/react";
-import { ProductFilterProvider } from "../../Context/product-filter";
+import {
+  ProductFilterContext,
+  ProductFilterProvider,
+} from "../../Context/product-filter";
 import ProductList from "./ProductList";
 import mockAxios from "axios";
 import { WishlistProvider } from "../../Context/wishlist";
@@ -47,6 +50,19 @@ describe("<ProductList/> tests", () => {
         ],
       },
     };
+    const state = {
+      sortBy: "low_to_high",
+      rating: 3,
+      price: 2000,
+      categories: {
+        menWatches: true,
+        womenWatches: true,
+        boyWatches: true,
+        girlWatches: true,
+      },
+      includeOutOfStock: true,
+      fastDelivery: false,
+    };
 
     mockAxios.get.mockResolvedValue(resp);
 
@@ -54,13 +70,15 @@ describe("<ProductList/> tests", () => {
       render(
         <BrowserRouter>
           <AuthProvider>
-            <ProductFilterProvider>
+            <ProductFilterContext.Provider
+              value={{ state, dispatch: jest.fn() }}
+            >
               <WishlistProvider>
                 <CartProvider>
                   <ProductList />
                 </CartProvider>
               </WishlistProvider>
-            </ProductFilterProvider>
+            </ProductFilterContext.Provider>
           </AuthProvider>
         </BrowserRouter>
       );
