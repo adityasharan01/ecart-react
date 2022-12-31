@@ -1,11 +1,10 @@
-import axios from "axios";
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Input } from "../../Components";
 import { useAuth } from "../../Context/auth";
 import { useCart } from "../../Context/cart";
 import { useWishlist } from "../../Context/wishlist";
-import { getUrlPrefix } from "../../utils";
+import { login } from "../../services/auth/auth";
 import "./Auth.css";
 
 function Login() {
@@ -22,10 +21,7 @@ function Login() {
   const loginHandler = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post(`${getUrlPrefix()}/api/auth/login`, {
-        email,
-        password,
-      });
+      const { data } = await login(email, password);
       const { foundUser, encodedToken } = data;
       setUser(foundUser);
       cartDispatch({ type: "INIT_CART", payload: foundUser?.cart });
@@ -73,6 +69,7 @@ function Login() {
                 />
                 <span
                   className="show-password"
+                  data-testid="showPassword"
                   onClick={() => setTogglePassword((prevState) => !prevState)}
                 >
                   {togglePassword ? (

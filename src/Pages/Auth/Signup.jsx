@@ -2,10 +2,9 @@ import React, { useReducer, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Input } from "../../Components";
 import "./Auth.css";
-import axios from "axios";
 import { useAuth } from "../../Context/auth";
 import { signupFormReducer } from "../../reducers";
-import { getUrlPrefix } from "../../utils";
+import { signup } from "../../services/auth/auth";
 
 function Signup() {
   const [state, dispatch] = useReducer(signupFormReducer, {
@@ -24,12 +23,7 @@ function Signup() {
   const signupHandler = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post(`${getUrlPrefix()}/api/auth/signup`, {
-        email,
-        firstName,
-        lastName,
-        password,
-      });
+      const { data } = await signup(email, firstName, lastName, password);
       const { createdUser, encodedToken } = data;
       // saving the encodedToken in the localStorage
       localStorage.setItem("token", encodedToken);
@@ -104,6 +98,7 @@ function Signup() {
                 />
                 <span
                   className="show-password"
+                  data-testid="showPassword"
                   onClick={() => setTogglePassword((prevState) => !prevState)}
                 >
                   {togglePassword ? (
@@ -118,7 +113,7 @@ function Signup() {
                   label="Confirm Password"
                   type="password"
                   class_name="input-textbox p-1"
-                  placeholder="Password"
+                  placeholder="Confirm Password"
                   name="confirmPassword"
                   value={confirmPassword}
                   changeHandler={handleChange}
@@ -126,7 +121,7 @@ function Signup() {
                 />
               </div>
               {confirmPassword.length > 0 && password !== confirmPassword && (
-                <span className="input-err py-1">password not matching</span>
+                <span className="input-err py-1" data-testid="errorMessage">password not matching</span>
               )}
 
               {error && <span className="input-err p-1">{error}</span>}

@@ -68,4 +68,14 @@ describe("Testing cart reducer", () => {
 
     expect(state).toEqual(expectedState);
   });
+
+  it("should call the default state", () => {
+    const action = {
+      type: "DUMMY_TYPE",
+    };
+
+    const state = cartReducer(initialState, action);
+
+    expect(state).toEqual(initialState);
+  });
 });

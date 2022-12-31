@@ -1,12 +1,16 @@
 import React from "react";
 import { useWishlist } from "../../Context/wishlist";
 import "./ProductCard.css";
-import { getUrlPrefix, isItemInList } from "../../utils";
+import { isItemInList } from "../../utils";
 import { useCart } from "../../Context/cart";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Button from "../Button/Button";
-import axios from "axios";
 import { useAuth } from "../../Context/auth";
+import { addToCart } from "../../services/cart/cart";
+import {
+  addToWishlist,
+  removeFromWishlist,
+} from "../../services/wishlist/wishlist";
 
 function ProductCard({ product }) {
   const {
@@ -24,7 +28,6 @@ function ProductCard({ product }) {
   const { cartState, cartDispatch } = useCart();
   const itemInWishlist = isItemInList(_id, state.wishlist);
   const itemInCart = isItemInList(_id, cartState.cart);
-  const token = localStorage.getItem("token");
   const navigate = useNavigate();
   const location = useLocation();
   const { user } = useAuth();
@@ -32,13 +35,7 @@ function ProductCard({ product }) {
   const handleAddToWishlist = async (product) => {
     if (user) {
       try {
-        const { data } = await axios.post(
-          `${getUrlPrefix()}/api/user/wishlist`,
-          { product },
-          {
-            headers: { authorization: token },
-          }
-        );
+        const { data } = await addToWishlist(product);
         dispatch({ type: "UPDATE_WISHLIST", payload: data?.wishlist });
       } catch (error) {
         console.error(error);
@@ -51,12 +48,7 @@ function ProductCard({ product }) {
   const handleRemoveFromWishlist = async (_id) => {
     if (user) {
       try {
-        const { data } = await axios.delete(
-          `${getUrlPrefix()}/api/user/wishlist/${_id}`,
-          {
-            headers: { authorization: token },
-          }
-        );
+        const { data } = await removeFromWishlist(_id);
         dispatch({ type: "UPDATE_WISHLIST", payload: data?.wishlist });
       } catch (e) {
         console.error(e);
@@ -69,13 +61,7 @@ function ProductCard({ product }) {
   const handleAddToCart = async (product) => {
     if (user) {
       try {
-        const { data } = await axios.post(
-          `${getUrlPrefix()}/api/user/cart`,
-          { product },
-          {
-            headers: { authorization: token },
-          }
-        );
+        const { data } = await addToCart(product);
         cartDispatch({ type: "UPDATE_CART", payload: data?.cart });
       } catch (e) {
         console.error(e);
@@ -94,6 +80,7 @@ function ProductCard({ product }) {
           <span
             className={`card-dismiss inwishlist-${itemInWishlist} center-div p-1`}
             onClick={() => handleRemoveFromWishlist(_id)}
+            data-testid="removeFromWishlistIcon"
           >
             <i className="fas fa-heart"></i>
           </span>
@@ -101,6 +88,7 @@ function ProductCard({ product }) {
           <span
             className={`card-dismiss inwishlist-${itemInWishlist} center-div p-1`}
             onClick={() => handleAddToWishlist(product)}
+            data-testid="addToWishlistIcon"
           >
             <i className="fas fa-heart"></i>
           </span>

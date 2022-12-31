@@ -19,4 +19,14 @@ describe("signupFormReducer tests", () => {
 
     expect(state).toEqual(expectedState);
   });
+
+  it("should call the default state", () => {
+    const action = {
+      type: "DUMMY_TYPE",
+    };
+
+    const state = signupFormReducer(initialState, action);
+
+    expect(state).toEqual(initialState);
+  });
 });

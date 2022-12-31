@@ -15,7 +15,11 @@ function Nav() {
     <>
       <header className="px-2">
         <div className="header px-1">
-          <div className="menu" onClick={() => toggleMobileNavbarVisibility()}>
+          <div
+            className="menu"
+            onClick={() => toggleMobileNavbarVisibility()}
+            data-testid="hamburger"
+          >
             <i className="fas fa-bars"></i>
           </div>
 
@@ -53,7 +57,11 @@ function Nav() {
           </Link>
         </div>
       </header>
-      {isMobileNavbarVisible && <MobileNavbar toggleMobileNavbarVisibility={toggleMobileNavbarVisibility}/>}
+      {isMobileNavbarVisible && (
+        <MobileNavbar
+          toggleMobileNavbarVisibility={toggleMobileNavbarVisibility}
+        />
+      )}
     </>
   );
 }

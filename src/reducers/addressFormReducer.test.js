@@ -39,4 +39,14 @@ describe("addressFromReducer tests", () => {
 
     expect(state).toEqual(expectedState);
   });
+
+  it("should call the default state", () => {
+    const action = {
+      type: "DUMMY_TYPE",
+    };
+
+    const state = addressFormReducer(initialState, action);
+
+    expect(state).toEqual(initialState);
+  });
 });

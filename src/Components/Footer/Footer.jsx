@@ -5,7 +5,7 @@ function Footer() {
   return (
     <footer className="center-div">
       <div className="footer-content p-4">
-        <p className="pt-2">
+        <p className="pt-2" data-testid="extraInfo">
           Made with{" "}
           <span className="footer-icon">
             <i className="fas fa-heart"></i>

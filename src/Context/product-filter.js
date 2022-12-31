@@ -12,7 +12,7 @@ const initialState = {
     girlWatches: false,
   },
   includeOutOfStock: true,
-  fastDelivery: false
+  fastDelivery: false,
 };
 
 const ProductFilterContext = createContext(initialState);
@@ -28,4 +28,4 @@ const ProductFilterProvider = ({ children }) => {
   );
 };
 
-export { ProductFilterProvider, useProductFilter };
+export { ProductFilterProvider, useProductFilter, ProductFilterContext };
