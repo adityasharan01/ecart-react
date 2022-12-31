@@ -67,7 +67,7 @@ function Order() {
                       <p>Price : ₹{price}</p>
                       <p>Quantity : {quantity}</p>
                     </div>
-                    <hr className="separator"/>
+                    <hr className="separator" />
                   </div>
                 )
               )}

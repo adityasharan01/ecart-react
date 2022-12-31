@@ -31,4 +31,4 @@ const OrderProvider = ({ children }) => {
   );
 };
 
-export { OrderProvider, useOrder };
+export { OrderProvider, useOrder, OrderContext };
