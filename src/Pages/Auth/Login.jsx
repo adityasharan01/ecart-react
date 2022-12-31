@@ -69,6 +69,7 @@ function Login() {
                 />
                 <span
                   className="show-password"
+                  data-testid="showPassword"
                   onClick={() => setTogglePassword((prevState) => !prevState)}
                 >
                   {togglePassword ? (
