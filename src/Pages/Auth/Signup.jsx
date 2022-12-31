@@ -98,6 +98,7 @@ function Signup() {
                 />
                 <span
                   className="show-password"
+                  data-testid="showPassword"
                   onClick={() => setTogglePassword((prevState) => !prevState)}
                 >
                   {togglePassword ? (
@@ -112,7 +113,7 @@ function Signup() {
                   label="Confirm Password"
                   type="password"
                   class_name="input-textbox p-1"
-                  placeholder="Password"
+                  placeholder="Confirm Password"
                   name="confirmPassword"
                   value={confirmPassword}
                   changeHandler={handleChange}
@@ -120,7 +121,7 @@ function Signup() {
                 />
               </div>
               {confirmPassword.length > 0 && password !== confirmPassword && (
-                <span className="input-err py-1">password not matching</span>
+                <span className="input-err py-1" data-testid="errorMessage">password not matching</span>
               )}
 
               {error && <span className="input-err p-1">{error}</span>}
