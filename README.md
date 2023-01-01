@@ -10,6 +10,13 @@
 ## 📽 Preview
 https://user-images.githubusercontent.com/40385118/187060968-c309a9e2-7cde-46f7-9002-6bec3433d7ad.mp4
 
+## 🧪Testing
+> Coverage more than 95%
+
+```bash
+yarn coverage
+```
+![screencapture-127-0-0-1-5500-coverage-lcov-report-index-html-2023-01-01-17_20_27](https://user-images.githubusercontent.com/40385118/210169856-f32cb677-4af6-4d34-a32d-913b82318325.png)
 
 
 ## 😎 Features
@@ -35,7 +42,7 @@ git clone https://github.com/SanketDhabarde/always-shopping.git
 ```
 ### 2. Install the dependencies in your root folder where you cloned the app
 ```
-npm install
+yarn install
 ```
 ### 3. Create .env file and add secret key. this will help you use `MockBee` APIs
 ```
@@ -43,7 +50,7 @@ REACT_APP_JWT_SECRET=<your-jwt-secret-of-your-choice>
 ```
 ### 4. Run the app
 ```
-npm start
+yarn start
 ```
 With that you can see your app running on `localhost:3000`
 
