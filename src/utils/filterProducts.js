@@ -1,3 +1,9 @@
+/**
+ * It filters the products based on catgegory(gender)
+ * @param {Array} products
+ * @param {Object} categories
+ * @returns filtered products
+ */
 export const filterProducts = (products = [], categories = {}) => {
   const { menWatches, womenWatches, boyWatches, girlWatches } = categories;
   const filteredProducts = [];
