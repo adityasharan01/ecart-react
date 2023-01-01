@@ -1,3 +1,10 @@
+/**
+ * It filter the products based on category
+ * @param {Array} products
+ * @param {Boolean} includeOutOfStock
+ * @param {Boolean} fastDelivery
+ * @returns {Array} filtered products
+ */
 export const filterCategory = (
   products = [],
   includeOutOfStock = true,

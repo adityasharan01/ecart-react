@@ -1,3 +1,9 @@
+/**
+ *
+ * @param {Array} products
+ * @param {String} sortBy
+ * @returns products based for sortBy state
+ */
 export const sortProducts = (products = [], sortBy = "") => {
   if (sortBy === "low_to_high") {
     return [...products].sort((a, b) => a.price - b.price);

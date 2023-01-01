@@ -3,3 +3,4 @@ export { wishlistReducer } from "./wishlistReducer";
 export { cartReducer } from "./cartReducer";
 export { signupFormReducer } from "./signupFormReducer";
 export { addressFormReducer } from "./addressFormReducer";
+export { orderReducer } from "./orderReducer";
