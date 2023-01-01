@@ -9,6 +9,7 @@ import { WishlistProvider } from "../../Context/wishlist";
 import { CartProvider } from "../../Context/cart";
 import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "../../Context/auth";
+import userEvent from "@testing-library/user-event";
 
 jest.mock("axios");
 
@@ -85,5 +86,21 @@ describe("<ProductList/> tests", () => {
     });
 
     expect(mockAxios.get).toHaveBeenCalledTimes(1);
+  });
+
+  it("should toggle the mobile filter", async () => {
+    render(
+      <ProductFilterProvider>
+        <ProductList />
+      </ProductFilterProvider>
+    );
+
+    const filterIconEl = screen.getByTitle(/Filter/i);
+
+    await userEvent.click(filterIconEl);
+
+    const closeFilterIconEl = screen.getByTitle(/Close Filter/i);
+
+    expect(closeFilterIconEl).toBeInTheDocument;
   });
 });
