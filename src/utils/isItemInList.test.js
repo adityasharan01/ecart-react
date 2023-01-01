@@ -27,8 +27,6 @@ describe("isItemInList() test", () => {
 
     const itemInList = isItemInList(item._id, list);
 
-    console.log({ itemInList });
-
     expect(itemInList).toBe(false);
   });
 });
