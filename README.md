@@ -33,7 +33,7 @@ yarn coverage
 - Order page
 
 ## ▶ Live url
-[always-shopping](https://always-shopping.netlify.app/)
+[always-shopping](https://ecart-react.vercel.app/)
 
 ## 🤯 How to run app locally
 ### 1. Clone the app
