@@ -38,7 +38,7 @@ yarn coverage
 ## 🤯 How to run app locally
 ### 1. Clone the app
 ```
-git clone https://github.com/SanketDhabarde/always-shopping.git
+git clone https://github.com/adityasharan01/ecart-react.git
 ```
 ### 2. Install the dependencies in your root folder where you cloned the app
 ```
