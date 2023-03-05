@@ -10,12 +10,12 @@ function Footer() {
           <span className="footer-icon">
             <i className="fas fa-heart"></i>
           </span>{" "}
-          by Sanket Dhabarde
+          by Aditya Sharan
         </p>
         <div className="footer-link mt-2">
           <a
             className="m-1"
-            href="https://github.com/SanketDhabarde/always-shopping"
+            href="https://github.com/adityasharan01"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -23,7 +23,7 @@ function Footer() {
           </a>
           <a
             className="m-1"
-            href="https://twitter.com/SanketDhabarde1"
+            href="https://twitter.com/adityasharan01"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -31,7 +31,7 @@ function Footer() {
           </a>
           <a
             className="m-1"
-            href="https://www.instagram.com/sanket_dhabarde/"
+            href="https://www.instagram.com/adityasharan811/"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -39,7 +39,7 @@ function Footer() {
           </a>
           <a
             className="m-1"
-            href="https://www.linkedin.com/in/sanket-dhabarde-91b028166/"
+            href="https://www.linkedin.com/in/aditya-sharan/"
             target="_blank"
             rel="noopener noreferrer"
           >
